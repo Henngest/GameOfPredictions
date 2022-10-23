@@ -20,10 +20,4 @@ jobs:
       - name: Install
         run: npm ci
       - name: Test
-        run: npm run test:ci
-      - uses: dorny/test-reporter@v1
-        if: success() || failure()
-        with:
-          name: JEST tests
-          path: frontend/junit.xml
-          reporter: jest-junit
+        run: npm test
