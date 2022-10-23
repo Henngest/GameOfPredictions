@@ -20,7 +20,7 @@ jobs:
       - name: Install
         run: npm ci
       - name: Test
-        run: npm test
+        run: npm run test:ci
       - uses: dorny/test-reporter@v1
         if: success() || failure()
         with:
