@@ -3,6 +3,7 @@ on:
   pull_request:
     paths:
       - 'backend/**'
+      - '.github/workflows/backend.yml'
 defaults:
   run:
     working-directory: backend
