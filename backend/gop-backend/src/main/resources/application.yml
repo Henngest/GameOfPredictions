@@ -2,7 +2,7 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/gameofpredictions
     username: postgres
-    password: postgres
+    password: password
   jpa:
     show-sql: true
 
