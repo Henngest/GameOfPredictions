@@ -27,7 +27,9 @@ create table fixture(
     away_team_win_coefficient real not null,
     draw_coefficient real not null,
     outcome text,
-    start_time timestamp not null
+    start_time timestamp not null,
+    home_team_goals bigint,
+    away_team_goals bigint
 );
 create table users(
     username text primary key,
