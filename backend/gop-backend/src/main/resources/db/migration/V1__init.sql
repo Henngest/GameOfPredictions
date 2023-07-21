@@ -44,3 +44,8 @@ create table prediction(
     fixture_id bigint references fixture,
     predicted_outcome text not null
 );
+create table team_seasons(
+    id bigserial primary key,
+    team_id text references team,
+    season_id bigint references season
+);
