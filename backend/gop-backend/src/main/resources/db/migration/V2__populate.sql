@@ -1,0 +1,65 @@
+insert into competition (name, short_history)
+values ('Bundesliga',
+        'The Bundesliga, sometimes referred to as the Fußball-Bundesliga or 1. Bundesliga, is a professional association football league in Germany. At the top of the German football league system, the Bundesliga is Germany''s primary football competition.');
+
+insert into season (name, competition_id)
+values ('2023/24', 1);
+
+insert into team (name, logo)
+values ('FC Augsburg',
+        'https://upload.wikimedia.org/wikipedia/en/thumb/c/c5/FC_Augsburg_logo.svg/210px-FC_Augsburg_logo.svg.png'),
+       ('Union Berlin',
+        'https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/1._FC_Union_Berlin_Logo.svg/330px-1._FC_Union_Berlin_Logo.svg.png'),
+       ('VfL Bochum',
+        'https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/VfL_Bochum_logo.svg/255px-VfL_Bochum_logo.svg.png'),
+       ('Werder Bremen',
+        'https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/SV-Werder-Bremen-Logo.svg/210px-SV-Werder-Bremen-Logo.svg.png'),
+       ('Darmstadt 98',
+        'https://upload.wikimedia.org/wikipedia/en/thumb/9/92/SV_Darmstadt_98_logo.svg/270px-SV_Darmstadt_98_logo.svg.png'),
+       ('Borussia Dortmund',
+        'https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Borussia_Dortmund_logo.svg/278px-Borussia_Dortmund_logo.svg.png'),
+       ('Eintracht Frankfurt',
+        'https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Eintracht_Frankfurt_Logo.svg/270px-Eintracht_Frankfurt_Logo.svg.png'),
+       ('SC Freiburg',
+        'https://upload.wikimedia.org/wikipedia/en/thumb/6/6d/SC_Freiburg_logo.svg/225px-SC_Freiburg_logo.svg.png'),
+       ('FC Heidenheim',
+        'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/1._FC_Heidenheim_1846.svg/225px-1._FC_Heidenheim_1846.svg.png'),
+       ('1899 Hoffenheim',
+        'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Logo_TSG_Hoffenheim.svg/240px-Logo_TSG_Hoffenheim.svg.png'),
+       ('FC Köln',
+        'https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Wappen_1_FC_Koeln.svg/270px-Wappen_1_FC_Koeln.svg.png'),
+       ('RB Leipzig',
+        'https://upload.wikimedia.org/wikipedia/en/thumb/0/04/RB_Leipzig_2014_logo.svg/420px-RB_Leipzig_2014_logo.svg.png'),
+       ('Bayer Leverkusen',
+        'https://upload.wikimedia.org/wikipedia/en/thumb/5/59/Bayer_04_Leverkusen_logo.svg/330px-Bayer_04_Leverkusen_logo.svg.png'),
+       ('Mainz 05',
+        'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Logo_Mainz_05.svg/285px-Logo_Mainz_05.svg.png'),
+       ('Borussia Mönchengladbach',
+        'https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Borussia_M%C3%B6nchengladbach_logo.svg/210px-Borussia_M%C3%B6nchengladbach_logo.svg.png'),
+       ('Bayern Munich',
+        'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/FC_Bayern_M%C3%BCnchen_logo_%282017%29.svg/285px-FC_Bayern_M%C3%BCnchen_logo_%282017%29.svg.png'),
+       ('VfB Stuttgart',
+        'https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/VfB_Stuttgart_1893_Logo.svg/270px-VfB_Stuttgart_1893_Logo.svg.png'),
+       ('VfL Wolfsburg',
+        'https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/VfL_Wolfsburg_Logo.svg/270px-VfL_Wolfsburg_Logo.svg.png');
+
+insert into team_seasons(team_id, season_id)
+values ('FC Augsburg', 1),
+       ('VfL Bochum', 1),
+       ('Werder Bremen', 1),
+       ('Darmstadt 98', 1),
+       ('Borussia Dortmund', 1),
+       ('Eintracht Frankfurt', 1),
+       ('SC Freiburg', 1),
+       ('FC Heidenheim', 1),
+       ('1899 Hoffenheim', 1),
+       ('FC Köln', 1),
+       ('RB Leipzig', 1),
+       ('Bayer Leverkusen', 1),
+       ('Mainz 05', 1),
+       ('Borussia Mönchengladbach', 1),
+       ('Bayern Munich', 1),
+       ('VfB Stuttgart', 1),
+       ('VfL Wolfsburg', 1),
+       ('FC Augsburg', 1);
+
