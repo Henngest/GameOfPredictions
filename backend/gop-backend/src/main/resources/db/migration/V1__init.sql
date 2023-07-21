@@ -33,7 +33,8 @@ create table users(
     username text primary key,
     password text not null,
     rating real,
-    role text not null
+    role text not null,
+    country text not null
 );
 create table prediction(
     id bigserial primary key,
