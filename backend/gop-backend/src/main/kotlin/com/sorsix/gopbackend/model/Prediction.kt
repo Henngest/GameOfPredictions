@@ -1,7 +1,7 @@
 package com.sorsix.gopbackend.model
 
 import com.sorsix.gopbackend.model.enumerations.Outcome
-import javax.persistence.*
+import jakarta.persistence.*
 
 @Entity
 data class Prediction(

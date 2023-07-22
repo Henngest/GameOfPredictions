@@ -1,7 +1,6 @@
 package com.sorsix.gopbackend.model
 
-import javax.persistence.Entity
-import javax.persistence.Id
+import jakarta.persistence.*
 
 @Entity
 data class Team(

@@ -1,9 +1,8 @@
 package com.sorsix.gopbackend.model
 
 import com.sorsix.gopbackend.model.enumerations.Outcome
-import java.time.LocalDate
+import jakarta.persistence.*
 import java.time.LocalDateTime
-import javax.persistence.*
 
 @Entity
 data class Fixture(

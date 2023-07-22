@@ -1,7 +1,7 @@
 package com.sorsix.gopbackend.model
 
 import com.sorsix.gopbackend.model.enumerations.Role
-import javax.persistence.*
+import jakarta.persistence.*
 
 @Entity
 @Table(name="users")

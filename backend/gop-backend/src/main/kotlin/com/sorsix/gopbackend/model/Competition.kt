@@ -1,6 +1,6 @@
 package com.sorsix.gopbackend.model
 
-import javax.persistence.*
+import jakarta.persistence.*
 
 @Entity
 data class Competition(

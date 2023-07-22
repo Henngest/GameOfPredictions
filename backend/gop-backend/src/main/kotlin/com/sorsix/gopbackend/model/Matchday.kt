@@ -1,7 +1,7 @@
 package com.sorsix.gopbackend.model
 
+import jakarta.persistence.*
 import java.time.LocalDateTime
-import javax.persistence.*
 
 @Entity
 data class Matchday(
