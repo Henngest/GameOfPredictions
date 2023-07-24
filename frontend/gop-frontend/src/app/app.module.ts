@@ -5,11 +5,13 @@ import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
 import {CompetitionsComponent} from './competitions/competitions.component';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
+import { CompetitionDetailsComponent } from './competition-details/competition-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CompetitionsComponent,
+    CompetitionDetailsComponent,
   ],
   imports: [
     BrowserModule,

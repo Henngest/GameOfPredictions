@@ -16,4 +16,8 @@ export class CompetitionsService {
   getAll(): Observable<Competition[]> {
     return this.http.get<Competition[]>("/api/competitions");
   }
+
+  getById(id: number): Observable<Competition | undefined> {
+    return this.http.get<Competition | undefined>(`/api/competitions/${id}`);
+  }
 }
