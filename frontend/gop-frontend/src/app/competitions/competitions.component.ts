@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {CompetitionsService} from "../competitions.service";
 import {Competition} from "../interfaces/competition";
-import {Observable} from "rxjs";
 import { faFutbol } from '@fortawesome/free-solid-svg-icons';
+import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-competitions',
@@ -11,8 +11,10 @@ import { faFutbol } from '@fortawesome/free-solid-svg-icons';
 })
 export class CompetitionsComponent implements OnInit {
 
-  competitions$: Observable<Competition[]> | undefined;
+  competitions: Competition[] | undefined;
+  loading = true;
   faFutbol = faFutbol;
+  faSpinner = faSpinner;
 
   constructor(
     private competitionsService: CompetitionsService
@@ -20,7 +22,10 @@ export class CompetitionsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.competitions$ = this.competitionsService.getAll()
+    this.competitionsService.getAll().subscribe(value => {
+      this.competitions = value;
+      this.loading = false;
+    })
   }
 
 }
