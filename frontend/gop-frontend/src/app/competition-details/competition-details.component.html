@@ -1,0 +1,10 @@
+<h1>Competition Details</h1>
+
+<div *ngIf="competition">
+  <h3>{{ competition.name }}</h3>
+  <p>{{ competition.shortHistory }}</p>
+</div>
+
+<div *ngIf="loading">
+  <fa-icon [icon]="faSpinner"></fa-icon> Loading...
+</div>

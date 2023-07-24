@@ -1,0 +1,14 @@
+<h1>Competitions</h1>
+
+<ul>
+  <li *ngFor="let c of competitions">
+    <fa-icon [icon]="faFutbol"></fa-icon>
+    <a routerLink="/competitions/{{c.id}}">
+      {{ c.name }}
+    </a>
+  </li>
+</ul>
+
+<div *ngIf="loading">
+  <fa-icon [icon]="faSpinner"></fa-icon> Loading...
+</div>
