@@ -14,5 +14,7 @@ data class Matchday(
     val startTime: LocalDateTime,
     @ManyToOne
     @JoinColumn(name="season_id")
-    val season: Season
+    val season: Season,
+    @OneToMany(mappedBy = "matchday")
+    val fixtures: Set<Fixture>
 )
