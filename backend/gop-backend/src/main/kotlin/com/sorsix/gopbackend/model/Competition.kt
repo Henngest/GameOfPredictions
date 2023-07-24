@@ -9,5 +9,5 @@ data class Competition(
     val id: Long,
     val name: String,
     @Column(name="short_history")
-    val shortHistory: String
+    val shortHistory: String?
 )

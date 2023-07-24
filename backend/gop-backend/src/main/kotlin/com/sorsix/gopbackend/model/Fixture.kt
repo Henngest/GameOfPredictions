@@ -1,5 +1,6 @@
 package com.sorsix.gopbackend.model
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import com.sorsix.gopbackend.model.enumerations.Outcome
 import jakarta.persistence.*
 import java.time.LocalDateTime
@@ -16,13 +17,13 @@ data class Fixture(
     @Column(name="draw_coefficient")
     val drawCoefficient: Double,
     @Enumerated(value = EnumType.STRING)
-    val outcome: Outcome,
+    val outcome: Outcome?,
     @Column(name="start_time")
     val startTime: LocalDateTime,
     @Column(name="home_team_goals")
-    val homeTeamGoals: Long,
+    val homeTeamGoals: Long?,
     @Column(name="away_team_goals")
-    val awayTeamGoals: Long,
+    val awayTeamGoals: Long?,
     @ManyToOne
     @JoinColumn(name="home_team_id")
     val homeTeam: Team,
@@ -31,5 +32,6 @@ data class Fixture(
     val awayTeam: Team,
     @ManyToOne
     @JoinColumn(name="matchday_id")
+    @JsonIgnore
     val matchday: Matchday
 )
