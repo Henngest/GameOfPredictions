@@ -1,0 +1,12 @@
+<h1>Matchdays for season {{season?.name}}</h1>
+
+<ul *ngIf="matchdays">
+  <li *ngFor="let m of matchdays">
+    <a routerLink="/seasons/{{season?.id}}/matchdays/{{m.id}}">
+      {{ m.matchdayNumber }}
+    </a>
+  </li>
+</ul>
+<div *ngIf="loading">
+  <fa-icon [icon]="faSpinner"></fa-icon> Loading...
+</div>
