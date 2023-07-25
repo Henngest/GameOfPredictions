@@ -18,5 +18,5 @@ data class Matchday(
         @JsonIgnore
         val season: Season,
         @OneToMany(mappedBy = "matchday")
-        val fixtures: Set<Fixture>
+        val fixtures: Set<Fixture>?
 )
