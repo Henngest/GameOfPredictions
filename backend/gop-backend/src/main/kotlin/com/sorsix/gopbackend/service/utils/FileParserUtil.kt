@@ -16,6 +16,20 @@ class FileParserUtil {
             .use { it.readLines() }
     }
 
+    private fun updateParsedMatchdays(parsedMatchdays: MutableList<ParsedMatchday>, matchday: ParsedMatchday?, fixtures: Set<ParsedFixturePartial>?) {
+        if (matchday != null) {
+            matchday.fixtures = fixtures
+            parsedMatchdays.add(matchday)
+        }
+    }
+
+    private fun updateMatchdayWithNumberAndStartTime(iterator: Iterator<String>, line: String, matchday: ParsedMatchday) {
+        val matchdayNumber = line.substringAfter("Matchday ").toLong()
+        val startTime = LocalDateTime.parse(iterator.next())
+        matchday.matchdayNumber = matchdayNumber
+        matchday.startTime = startTime
+    }
+
     fun parseMatchdaysFromFile(file: InputStream): List<ParsedMatchday> {
         val parsedMatchdays = mutableListOf<ParsedMatchday>()
         val lines = this.getLinesFromInputStream(file)
@@ -26,37 +40,17 @@ class FileParserUtil {
         while (iterator.hasNext()) {
             var line = iterator.next()
             if (line.startsWith("Matchday", true)) {
-                if (matchday != null) {
-                    matchday.fixtures = fixtures
-                    parsedMatchdays.add(matchday)
-                }
+                updateParsedMatchdays(parsedMatchdays, matchday, fixtures)
 
                 matchday = ParsedMatchday()
                 fixtures = HashSet()
-                val matchdayNumber = line.substringAfter("Matchday ").toLong()
-                line = iterator.next()
-                val startTime = LocalDateTime.parse(line)
-                matchday.matchdayNumber = matchdayNumber
-                matchday.startTime = startTime
+                updateMatchdayWithNumberAndStartTime(iterator, line, matchday)
             } else {
-                val parts = line.split(",")
-                fixtures?.add(
-                    ParsedFixturePartial(
-                        homeTeam = parts[0].trim(),
-                        awayTeam = parts[1].trim(),
-                        startTime = LocalDateTime.parse(parts[2].trim()),
-                        homeTeamWinCoefficient = parts[3].trim().toDouble(),
-                        awayTeamWinCoefficient = parts[4].trim().toDouble(),
-                        drawCoefficient = parts[5].trim().toDouble()
-                    )
-                )
+                fixtures?.add(ParsedFixturePartial.createFromLine(line))
             }
         }
 
-        if (matchday != null) {
-            matchday.fixtures = fixtures
-            parsedMatchdays.add(matchday)
-        }
+        updateParsedMatchdays(parsedMatchdays, matchday, fixtures)
 
         return parsedMatchdays
     }

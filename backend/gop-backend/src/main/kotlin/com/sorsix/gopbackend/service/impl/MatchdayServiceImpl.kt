@@ -57,6 +57,7 @@ class MatchdayServiceImpl(
 
             this.matchdayRepository.save(matchday)
 
+            // TODO: Hashing for teams in order not to send so many requests to the DB
             parsedMatchday.fixtures?.forEach { parsedFixture ->
                 val homeTeam = this.teamRepository.findByIdOrNull(parsedFixture.homeTeam)
                     ?: throw TeamDoesNotExistException("Matchday with id [${parsedFixture.homeTeam}] does not exist.")
