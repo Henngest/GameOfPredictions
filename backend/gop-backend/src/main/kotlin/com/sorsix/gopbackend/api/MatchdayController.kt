@@ -19,6 +19,7 @@ class MatchdayController(val matchdayService: MatchdayService) {
             matchdayService.getByIdAndSeason(id, seasonId)
                     .let { ResponseEntity.ok(it) }
 
+    // TODO Check if the uploaded file extension: .pdf, .csv, .txt etc.
     @PostMapping("/import")
     fun importMatchdaysFromFile(@PathVariable seasonId: Long, @RequestParam file: MultipartFile) {
         this.matchdayService.importMatchdaysFromFile(seasonId, file.inputStream)

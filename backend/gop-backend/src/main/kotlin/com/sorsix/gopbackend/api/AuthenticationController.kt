@@ -5,6 +5,7 @@ import com.sorsix.gopbackend.model.dto.UserLoginDto
 import com.sorsix.gopbackend.model.dto.UserRegisterDto
 import com.sorsix.gopbackend.service.auth.AuthenticationService
 import org.springframework.http.ResponseEntity
+import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
@@ -17,7 +18,7 @@ class AuthenticationController(
 ) {
 
     @PostMapping("/register")
-    fun register(@RequestBody userRegisterDto: UserRegisterDto): ResponseEntity<AuthenticationDto> {
+    fun register(@Validated @RequestBody userRegisterDto: UserRegisterDto): ResponseEntity<AuthenticationDto> {
         val v = authenticationService.register(userRegisterDto)
         return ResponseEntity.ok(v)
     }
