@@ -9,6 +9,9 @@ import { CompetitionDetailsComponent } from './competition-details/competition-d
 import { SeasonsComponent } from './seasons/seasons.component';
 import { SeasonDetailsComponent } from './season-details/season-details.component';
 import { MatchdaysComponent } from './matchdays/matchdays.component';
+import { MatchdayDetailsComponent } from './matchday-details/matchday-details.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +21,9 @@ import { MatchdaysComponent } from './matchdays/matchdays.component';
     SeasonsComponent,
     SeasonDetailsComponent,
     MatchdaysComponent,
+    MatchdayDetailsComponent,
+    LoginComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
