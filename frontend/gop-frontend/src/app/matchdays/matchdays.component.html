@@ -2,9 +2,10 @@
 
 <ul *ngIf="matchdays">
   <li *ngFor="let m of matchdays">
-    <a routerLink="/seasons/{{season?.id}}/matchdays/{{m.id}}">
-      {{ m.matchdayNumber }}
+    <a routerLink="/competitions/{{competitionId}}/seasons/{{season?.id}}/matchdays/{{m.id}}">
+      Matchday #{{ m.matchdayNumber }}
     </a>
+    (Starts {{m.startTime}})
   </li>
 </ul>
 <div *ngIf="loading">
