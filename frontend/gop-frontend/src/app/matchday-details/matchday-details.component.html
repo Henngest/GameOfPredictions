@@ -1,0 +1,5 @@
+<h1>Matchday {{matchday?.matchdayNumber}} of {{competition?.name}} {{season?.name}} season</h1>
+
+<div *ngIf="loading">
+  <fa-icon [icon]="faSpinner"></fa-icon> Loading...
+</div>
