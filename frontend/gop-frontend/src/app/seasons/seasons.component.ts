@@ -41,5 +41,6 @@ export class SeasonsComponent {
         this.loading = false;
       }
     );
+    console.log(localStorage.getItem("jwt"));
   }
 }
