@@ -96,8 +96,6 @@ class MatchdayServiceImpl(
 
     override fun importMatchdayResultsFromFile(matchdayId: Long, file: InputStream) {
         val fixtures = this.fileParserUtil.parseFixtureResultsFromFile(file)
-//        val matchday = this.matchdayRepository.findByIdOrNull(matchdayId)
-//            ?: throw MatchdayDoesNotExistException("Matchday with id [$matchdayId] does not exist.")
 
         fixtures.forEach {
             val fixture = this.fixtureRepository.findByMatchdayIdAndHomeTeamAndAwayTeam(matchdayId, it.homeTeam, it.awayTeam)
@@ -108,19 +106,6 @@ class MatchdayServiceImpl(
                 awayTeamGoals = it.awayTeamGoals,
                 outcome = it.outcome
             ))
-//            this.fixtureRepository.save(Fixture(
-//                id = fixture.id,
-//                homeTeam = fixture.homeTeam,
-//                awayTeam = fixture.awayTeam,
-//                homeTeamGoals = it.homeTeamGoals,
-//                awayTeamGoals = it.awayTeamGoals,
-//                outcome = it.outcome,
-//                homeTeamWinCoefficient = fixture.homeTeamWinCoefficient,
-//                awayTeamWinCoefficient = fixture.awayTeamWinCoefficient,
-//                drawCoefficient = fixture.drawCoefficient,
-//                matchday = fixture.matchday,
-//                startTime = fixture.startTime
-//            ))
         }
     }
 }
