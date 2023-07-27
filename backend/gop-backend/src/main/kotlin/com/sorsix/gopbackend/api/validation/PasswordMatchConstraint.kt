@@ -2,10 +2,9 @@ package com.sorsix.gopbackend.api.validation
 
 import jakarta.validation.Constraint
 import jakarta.validation.Payload
-import java.lang.annotation.Documented
 import kotlin.reflect.KClass
 
-@Documented
+@MustBeDocumented
 @Constraint(validatedBy = [PasswordMatchConstraintValidator::class])
 @Target(AnnotationTarget.CLASS)
 @Retention(AnnotationRetention.RUNTIME)
