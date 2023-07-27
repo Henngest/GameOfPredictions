@@ -24,4 +24,11 @@ class MatchdayController(val matchdayService: MatchdayService) {
     fun importMatchdaysFromFile(@PathVariable seasonId: Long, @RequestParam file: MultipartFile) {
         this.matchdayService.importMatchdaysFromFile(seasonId, file.inputStream)
     }
+
+    @PostMapping("/{id}/importResults")
+    fun importMatchdayResultsFromFile(@PathVariable seasonId: Long,
+                                      @PathVariable id: Long,
+                                      @RequestParam file: MultipartFile) {
+        this.matchdayService.importMatchdayResultsFromFile(id, file.inputStream)
+    }
 }
