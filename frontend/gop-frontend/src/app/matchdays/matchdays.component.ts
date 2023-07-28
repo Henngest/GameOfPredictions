@@ -3,22 +3,23 @@ import {Season} from "../interfaces/season";
 import {SeasonsService} from "../seasons.service";
 import {CompetitionsService} from "../competitions.service";
 import {ActivatedRoute} from "@angular/router";
-import {filter, forkJoin, map, mergeMap} from "rxjs";
+import {filter, forkJoin, switchMap} from "rxjs";
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import {Matchday} from "../interfaces/matchday";
 import {MatchdayService} from "../matchday.service";
+import {DatePipe} from "@angular/common";
 
 
 @Component({
   selector: 'app-matchdays',
   templateUrl: './matchdays.component.html',
-  styleUrls: ['./matchdays.component.css']
+  styleUrls: ['./matchdays.component.css'],
+  providers: [DatePipe]
 })
 export class MatchdaysComponent {
   matchdays: Matchday[] | undefined;
   season: Season | undefined;
   loading: boolean = true;
-  competitionId: string | undefined;
   faSpinner = faSpinner;
 
   constructor(private competitionService: CompetitionsService,
@@ -28,26 +29,21 @@ export class MatchdaysComponent {
   }
 
   ngOnInit(): void {
-    this.route.params.subscribe(
-      params => {
-        this.competitionId = params['competitionId'];
-      }
-    )
     this.route.paramMap.pipe(
-      filter(params => params.has('seasonId')),
-      map(params => params.get('seasonId')!!),
-      mergeMap(param => {
-        const seasonObs = this.seasonsService.getById(+param, +this.competitionId!!);
-        const matchdayObs = this.matchdayService.getAll(+param);
-        return forkJoin([matchdayObs, seasonObs]);
+      filter(params => params.has('competitionId') && params.has('seasonId')),
+      switchMap(params => {
+        const competitionId = +params.get('competitionId')!!;
+        const seasonId = +params.get('seasonId')!!;
+
+        const seasonRequest$ = this.seasonsService.getById(seasonId, competitionId);
+        const matchdaysRequest$ = this.matchdayService.getAll(seasonId);
+
+        return forkJoin([seasonRequest$, matchdaysRequest$]);
       })
-    ).subscribe(
-      ([matchdayData, seasonData]) => {
-        this.season = seasonData;
-        this.matchdays = matchdayData;
-        console.log(this.matchdays);
-        this.loading = false;
-      }
-    );
+    ).subscribe(([seasonData, matchdaysData]) => {
+      this.season = seasonData;
+      this.matchdays = matchdaysData;
+      this.loading = false;
+    })
   }
 }

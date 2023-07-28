@@ -1,13 +1,16 @@
-<h1>Matchdays for season {{season?.name}}</h1>
+<div *ngIf="season">
+  <h1>Matchdays for season {{season.name}}</h1>
 
-<ul *ngIf="matchdays">
-  <li *ngFor="let m of matchdays">
-    <a routerLink="/competitions/{{competitionId}}/seasons/{{season?.id}}/matchdays/{{m.id}}">
-      Matchday #{{ m.matchdayNumber }}
-    </a>
-    (Starts {{m.startTime}})
-  </li>
-</ul>
+  <ul *ngIf="matchdays">
+    <li *ngFor="let m of matchdays">
+      <a routerLink="/competitions/{{season.competition.id}}/seasons/{{season.id}}/matchdays/{{m.id}}">
+        Matchday #{{ m.matchdayNumber }}
+      </a>
+      (Starts {{m.startTime | date: 'MM-dd-yyyy HH:mm' }})
+    </li>
+  </ul>
+</div>
 <div *ngIf="loading">
-  <fa-icon [icon]="faSpinner"></fa-icon> Loading...
+  <fa-icon [icon]="faSpinner"></fa-icon>
+  Loading...
 </div>
