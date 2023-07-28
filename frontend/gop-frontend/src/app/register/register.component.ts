@@ -3,6 +3,7 @@ import {countryList} from "../CountryList";
 import {AbstractControlOptions, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AuthenticationService} from "../authentication.service";
 import {Router} from "@angular/router";
+import {Errors} from "../interfaces/errors";
 
 @Component({
   selector: 'app-register',
@@ -15,6 +16,7 @@ export class RegisterComponent {
   registerForm: FormGroup = new FormGroup({});
   isSubmitted = false;
   passwordsMatch = true;
+  errors: Errors | undefined;
 
   constructor(private formBuilder: FormBuilder,
               private authService: AuthenticationService,
@@ -41,11 +43,15 @@ export class RegisterComponent {
                               this.registerForm.get('password')?.value,
                               this.registerForm.get('confirmPassword')?.value,
                               this.registerForm.get('country')?.value)
-      .subscribe(
-        value => {
+      .subscribe({
+        next: (value) => {
           localStorage.setItem("jwt",value!!.jwt);
           this.router.navigateByUrl("/competitions");
-        }
+        },
+        error: (err) => {
+          this.errors = {errorMessages: err.error.errors};
+        }}
+
       )
   }
 

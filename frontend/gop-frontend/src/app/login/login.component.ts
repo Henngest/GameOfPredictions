@@ -33,6 +33,7 @@ export class LoginComponent {
                           this.loginForm.get('password')?.value)
       .subscribe(
         value => {
+          localStorage.setItem("jwt",value!!.jwt);
           this.router.navigateByUrl("/competitions");
         }
       )
