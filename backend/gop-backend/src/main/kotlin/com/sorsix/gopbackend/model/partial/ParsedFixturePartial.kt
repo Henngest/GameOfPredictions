@@ -12,7 +12,7 @@ class ParsedFixturePartial(
 ) {
 
     companion object {
-        fun createFromLine(line: String) : ParsedFixturePartial {
+        fun createFromLine(line: String): ParsedFixturePartial {
             val parts = line.split(",")
             return ParsedFixturePartial(
                 homeTeam = parts[0].trim(),

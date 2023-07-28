@@ -3,6 +3,7 @@ package com.sorsix.gopbackend.service.impl
 import com.sorsix.gopbackend.model.Fixture
 import com.sorsix.gopbackend.model.Matchday
 import com.sorsix.gopbackend.model.Team
+import com.sorsix.gopbackend.model.exceptions.FixtureDoesNotExistException
 import com.sorsix.gopbackend.model.exceptions.MatchdayDoesNotExistException
 import com.sorsix.gopbackend.model.exceptions.SeasonDoesNotExistException
 import com.sorsix.gopbackend.model.exceptions.TeamDoesNotExistException
@@ -90,6 +91,21 @@ class MatchdayServiceImpl(
 
                 this.fixtureRepository.save(fixture)
             }
+        }
+    }
+
+    override fun importMatchdayResultsFromFile(matchdayId: Long, file: InputStream) {
+        val fixtures = this.fileParserUtil.parseFixtureResultsFromFile(file)
+
+        fixtures.forEach {
+            val fixture = this.fixtureRepository.findByMatchdayIdAndHomeTeamAndAwayTeam(matchdayId, it.homeTeam, it.awayTeam)
+                ?: throw FixtureDoesNotExistException("Fixture with home team [${it.homeTeam}] and away team [${it.awayTeam}")
+
+            this.fixtureRepository.save(fixture.copy(
+                homeTeamGoals = it.homeTeamGoals,
+                awayTeamGoals = it.awayTeamGoals,
+                outcome = it.outcome
+            ))
         }
     }
 }

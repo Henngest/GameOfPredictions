@@ -11,4 +11,6 @@ interface MatchdayService {
     fun getByIdAndSeason(matchdayId: Long, seasonId: Long): Matchday
 
     fun importMatchdaysFromFile(seasonId: Long, file: InputStream)
+
+    fun importMatchdayResultsFromFile(matchdayId: Long, file: InputStream)
 }

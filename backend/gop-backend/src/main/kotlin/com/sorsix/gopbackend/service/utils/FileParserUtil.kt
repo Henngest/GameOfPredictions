@@ -1,6 +1,7 @@
 package com.sorsix.gopbackend.service.utils
 
 import com.sorsix.gopbackend.model.partial.ParsedFixturePartial
+import com.sorsix.gopbackend.model.partial.ParsedFixtureResultPartial
 import com.sorsix.gopbackend.model.partial.ParsedMatchday
 import org.springframework.stereotype.Component
 import java.io.BufferedReader
@@ -54,4 +55,8 @@ class FileParserUtil {
 
         return parsedMatchdays
     }
+
+    fun parseFixtureResultsFromFile(file: InputStream): List<ParsedFixtureResultPartial> =
+        this.getLinesFromInputStream(file)
+            .map { ParsedFixtureResultPartial.createFromLine(it) }
 }
