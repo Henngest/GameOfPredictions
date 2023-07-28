@@ -17,6 +17,6 @@ data class Matchday(
         @JoinColumn(name = "season_id")
         @JsonIgnore
         val season: Season,
-        @OneToMany(mappedBy = "matchday")
+        @OneToMany(mappedBy = "matchday", fetch = FetchType.LAZY) // TODO: Make changes so that Hibernate doesn't ignore fetch type LAZY (issue is related to data classes).
         val fixtures: List<Fixture>?
 )

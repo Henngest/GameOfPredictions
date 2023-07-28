@@ -1,5 +1,47 @@
-<h1>Matchday {{matchday?.matchdayNumber}} of {{competition?.name}} {{season?.name}} season</h1>
-
+<div *ngIf="matchday">
+  <h1>
+    Matchday {{matchday.matchdayNumber}} of {{competition?.name}} {{season?.name}} season
+  </h1>
+  <h3>Fixtures</h3>
+  <table>
+    <thead class="table-head">
+    <tr>
+      <th>Fixture</th>
+      <th>Start time</th>
+      <th>1</th>
+      <th>X</th>
+      <th>2</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let fixture of matchday.fixtures">
+      <td>
+        <div class="d-flex fixture-team">
+          <img src="{{ fixture.homeTeam.logo }}" alt="{{ fixture.homeTeam.name }}" class="fixture-img"/>
+          <p class="fixture-team-name">{{ fixture.homeTeam.name }}</p>
+        </div>
+        <div class="d-flex fixture-team">
+          <img src="{{ fixture.awayTeam.logo }}" alt="{{ fixture.awayTeam.name }}" class="fixture-img"/>
+          <p class="fixture-team-name">{{ fixture.awayTeam.name }}</p>
+        </div>
+      </td>
+      <td>
+        {{ fixture.startTime | date: 'MM-dd-yyyy HH:mm' }}
+      </td>
+      <td>
+        {{ fixture.homeTeamWinCoefficient | number:'1.2-2' }}
+      </td>
+      <td>
+        {{ fixture.drawCoefficient | number:'1.2-2' }}
+      </td>
+      <td>
+        {{ fixture.awayTeamWinCoefficient | number:'1.2-2' }}
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
 <div *ngIf="loading">
-  <fa-icon [icon]="faSpinner"></fa-icon> Loading...
+  <fa-icon [icon]="faSpinner"></fa-icon>
+  Loading...
 </div>

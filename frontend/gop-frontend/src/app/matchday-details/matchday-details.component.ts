@@ -4,15 +4,17 @@ import {Competition} from "../interfaces/competition";
 import {SeasonsService} from "../seasons.service";
 import {CompetitionsService} from "../competitions.service";
 import {ActivatedRoute} from "@angular/router";
-import {filter, forkJoin, map, mergeMap} from "rxjs";
+import {filter, forkJoin, map, mergeMap, switchMap} from "rxjs";
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import {Matchday} from "../interfaces/matchday";
 import {MatchdayService} from "../matchday.service";
+import {DatePipe, DecimalPipe} from "@angular/common";
 
 @Component({
   selector: 'app-matchday-details',
   templateUrl: './matchday-details.component.html',
-  styleUrls: ['./matchday-details.component.css']
+  styleUrls: ['./matchday-details.component.css'],
+  providers: [DatePipe, DecimalPipe]
 })
 export class MatchdayDetailsComponent {
   matchday: Matchday | undefined;
@@ -24,34 +26,31 @@ export class MatchdayDetailsComponent {
   faSpinner = faSpinner;
 
   constructor(private matchdayService: MatchdayService,
-              private seasonService: SeasonsService,
+              private seasonsService: SeasonsService,
               private competitionService: CompetitionsService,
               private route: ActivatedRoute) {
   }
 
-  ngOnInit(): void{
-    this.route.params.subscribe(
-      params => {
-        this.competitionId = params['competitionId'];
-        this.seasonId = params['seasonId'];
-      }
-    )
+  ngOnInit(): void {
     this.route.paramMap.pipe(
-      filter(params => params.has('id')),
-      map(params => params.get('id')!!),
-      mergeMap(param => {
-        const matchdayObs = this.matchdayService.getById(+param,+this.seasonId!!);
-        const seasonObs = this.seasonService.getById(+this.seasonId!!, +this.competitionId!!); //TODO() Check if ids are a number
-        const competitionObs = this.competitionService.getById(+this.competitionId!!);
-        return forkJoin([matchdayObs, seasonObs, competitionObs]);
+      switchMap(params => {
+        const competitionId = +params.get('competitionId')!!;
+        const seasonId = +params.get('seasonId')!!;
+        const matchdayId = +params.get('id')!!;
+
+        const seasonRequest$ = this.seasonsService.getById(seasonId, competitionId);
+        const matchdaysRequest$ = this.matchdayService.getById(matchdayId, seasonId);
+
+        return forkJoin([seasonRequest$, matchdaysRequest$]);
       })
-    ).subscribe(
-      ([matchdayData, seasonData, competitionData]) => {
-        this.matchday = matchdayData;
-        this.season = seasonData;
-        this.competition = competitionData;
-        this.loading = false;
-      }
-    );
+    ).subscribe(([seasonData, matchdayData]) => {
+      this.matchday = matchdayData;
+      this.season = seasonData;
+      this.competition = this.season?.competition;
+      this.loading = false;
+
+      console.log(this.matchday)
+    })
+
   }
 }
