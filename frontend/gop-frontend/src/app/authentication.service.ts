@@ -20,14 +20,25 @@ export class AuthenticationService {
     }
   }
 
-  register(username: string, password: string, confirmPassword: string, country: string): Observable<Jwt | undefined> {
-    return this.httpClient.post<Jwt | undefined>("/api/auth/register", {username, password, confirmPassword, country})
+  register(username: string, password: string, confirmPassword: string, country: string): Observable<boolean> {
+    return this.httpClient
+      .post<Jwt | undefined>("/api/auth/register", {username, password, confirmPassword, country}).pipe(
+        map(value => {
+          if (value && value.jwt) {
+            localStorage.setItem("jwt", value.jwt);
+            this.isLoggedInSubject.next(true);
+            return true;
+          } else {
+            return false;
+          }
+        })
+      )
   }
 
   login(username: string, password: string): Observable<boolean> {
     return this.httpClient.post<Jwt | undefined>("/api/auth/login", {username, password}).pipe(
       map(value => {
-        if(value && value.jwt) {
+        if (value && value.jwt) {
           localStorage.setItem("jwt", value.jwt);
           this.isLoggedInSubject.next(true);
           return true;
@@ -54,7 +65,6 @@ export class AuthenticationService {
     const token = localStorage.getItem("jwt");
     if (token) {
       const tokenPayload = this.jwtHelper.decodeToken(token);
-      console.log(tokenPayload.sub);
       return tokenPayload.sub;
     }
     return undefined;

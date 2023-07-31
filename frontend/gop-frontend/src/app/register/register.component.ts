@@ -45,8 +45,9 @@ export class RegisterComponent {
                               this.registerForm.get('country')?.value)
       .subscribe({
         next: (value) => {
-          localStorage.setItem("jwt",value!!.jwt);
-          this.router.navigateByUrl("/competitions");
+          if (value) {
+            this.router.navigateByUrl("/competitions");
+          }
         },
         error: (err) => {
           this.errors = {errorMessages: err.error.errors};
