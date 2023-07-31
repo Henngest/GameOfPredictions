@@ -1,10 +1,9 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Season} from "../interfaces/season";
 import {Competition} from "../interfaces/competition";
 import {SeasonsService} from "../seasons.service";
-import {CompetitionsService} from "../competitions.service";
 import {ActivatedRoute} from "@angular/router";
-import {filter, forkJoin, map, mergeMap, switchMap} from "rxjs";
+import {forkJoin, switchMap} from "rxjs";
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import {Matchday} from "../interfaces/matchday";
 import {MatchdayService} from "../matchday.service";
@@ -16,18 +15,15 @@ import {DatePipe, DecimalPipe} from "@angular/common";
   styleUrls: ['./matchday-details.component.css'],
   providers: [DatePipe, DecimalPipe]
 })
-export class MatchdayDetailsComponent {
+export class MatchdayDetailsComponent implements OnInit {
   matchday: Matchday | undefined;
   season: Season | undefined;
   competition: Competition | undefined;
-  seasonId: string | undefined;
-  competitionId: string | undefined;
   loading: boolean = true;
   faSpinner = faSpinner;
 
   constructor(private matchdayService: MatchdayService,
               private seasonsService: SeasonsService,
-              private competitionService: CompetitionsService,
               private route: ActivatedRoute) {
   }
 
@@ -48,9 +44,6 @@ export class MatchdayDetailsComponent {
       this.season = seasonData;
       this.competition = this.season?.competition;
       this.loading = false;
-
-      console.log(this.matchday)
     })
-
   }
 }
