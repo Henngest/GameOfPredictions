@@ -1,5 +1,11 @@
-<h1>Season {{season?.name}} of {{competition?.name}}</h1>
+<div *ngIf="season && competition">
+  <h1>Season {{season?.name}} of {{competition?.name}}</h1>
+  <a routerLink="/competitions/{{competition.id}}/seasons/{{season.id}}/matchdays">
+    Show matchdays
+  </a>
+</div>
 
 <div *ngIf="loading">
-  <fa-icon [icon]="faSpinner"></fa-icon> Loading...
+  <fa-icon [icon]="faSpinner"></fa-icon>
+  Loading...
 </div>

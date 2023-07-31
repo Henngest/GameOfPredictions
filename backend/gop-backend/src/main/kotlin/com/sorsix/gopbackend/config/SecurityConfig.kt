@@ -23,8 +23,10 @@ class SecurityConfig(
             .csrf { csrf -> csrf.disable() }
             .authorizeHttpRequests { authorizeHttpRequests ->
                 authorizeHttpRequests
-                    .requestMatchers("/api/auth/**").permitAll()
-                    .anyRequest().authenticated()
+                    .requestMatchers("/api/predict").authenticated()
+                    .requestMatchers("/api/seasons/{seasonId}/matchdays/import",
+                        "/api/seasons/{seasonId}/matchdays/{id}/importResults").hasRole("ADMIN")
+                    .anyRequest().permitAll()
             }
             .sessionManagement { sessionManagement ->
                 sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS)

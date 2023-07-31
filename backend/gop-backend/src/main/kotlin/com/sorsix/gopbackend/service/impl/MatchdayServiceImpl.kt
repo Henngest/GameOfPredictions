@@ -100,7 +100,7 @@ class MatchdayServiceImpl(
 
         fixtures.forEach {
             val fixture = this.fixtureRepository.findByMatchdayIdAndHomeTeamAndAwayTeam(matchdayId, it.homeTeam, it.awayTeam)
-                ?: throw FixtureDoesNotExistException("Fixture with home team [${it.homeTeam}] and away team [${it.awayTeam}")
+                ?: throw FixtureDoesNotExistException("Fixture with home team [${it.homeTeam}] and away team [${it.awayTeam} for matchday [${matchdayId}] does not exist")
 
             this.fixtureRepository.save(fixture.copy(
                 homeTeamGoals = it.homeTeamGoals,
