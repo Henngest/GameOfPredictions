@@ -28,21 +28,34 @@
       <td>
         {{ fixture.startTime | date: 'MM-dd-yyyy HH:mm' }}
       </td>
-      <td>
+      <td
+        (click)="onPredictionChange(fixture.id, outcome.HOME_TEAM_WIN)"
+        class="td-prediction"
+        [ngClass]="{ 'selected': isPredictionSelected(fixture.id, outcome.HOME_TEAM_WIN) }"
+
+      >
         {{ fixture.homeTeamWinCoefficient | number:'1.2-2' }}
       </td>
-      <td>
+      <td
+        (click)="onPredictionChange(fixture.id, outcome.DRAW)"
+        class="td-prediction"
+        [ngClass]="{ 'selected': isPredictionSelected(fixture.id, outcome.DRAW) }"
+      >
         {{ fixture.drawCoefficient | number:'1.2-2' }}
       </td>
-      <td>
+      <td
+        (click)="onPredictionChange(fixture.id, outcome.AWAY_TEAM_WIN)"
+        class="td-prediction"
+        [ngClass]="{ 'selected': isPredictionSelected(fixture.id, outcome.AWAY_TEAM_WIN) }"
+      >
         {{ fixture.awayTeamWinCoefficient | number:'1.2-2' }}
       </td>
     </tr>
     </tbody>
   </table>
-  <a routerLink="/competitions/{{competition?.id}}/seasons/{{season?.id}}/matchdays/{{matchday.id}}/predict">
-    Make predictions
-  </a>
+
+  <p>{{errorMessage}}</p>
+  <button (click)="onSubmit()">Submit</button>
 </div>
 <div *ngIf="loading">
   <fa-icon [icon]="faSpinner"></fa-icon>

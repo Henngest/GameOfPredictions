@@ -17,6 +17,7 @@ import {AuthInterceptor} from "./interceptors/auth-interceptor";
 import { ImportMatchdaysComponent } from './import-matchdays/import-matchdays.component';
 import { HeaderComponent } from './header/header.component';
 import {JWT_OPTIONS, JwtModule} from "@auth0/angular-jwt";
+import { MakePredictionsComponent } from './make-predictions/make-predictions.component';
 
 
 export function jwtOptionsFactory() {
@@ -42,6 +43,7 @@ export function jwtOptionsFactory() {
     RegisterComponent,
     ImportMatchdaysComponent,
     HeaderComponent,
+    MakePredictionsComponent,
   ],
   imports: [
     BrowserModule,

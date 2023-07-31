@@ -9,6 +9,7 @@ import {MatchdayDetailsComponent} from "./matchday-details/matchday-details.comp
 import {LoginComponent} from "./login/login.component";
 import {RegisterComponent} from "./register/register.component";
 import {ImportMatchdaysComponent} from "./import-matchdays/import-matchdays.component";
+import {MakePredictionsComponent} from "./make-predictions/make-predictions.component";
 
 const routes: Routes = [
   {path: 'competitions', component: CompetitionsComponent},
@@ -18,6 +19,7 @@ const routes: Routes = [
   {path: 'competitions/:competitionId/seasons/:seasonId/matchdays', component: MatchdaysComponent},
   {path: 'competitions/:competitionId/seasons/:seasonId/matchdays/import', component: ImportMatchdaysComponent},
   {path: 'competitions/:competitionId/seasons/:seasonId/matchdays/:id', component: MatchdayDetailsComponent},
+  {path: 'competitions/:competitionId/seasons/:seasonId/matchdays/:id/predict', component: MakePredictionsComponent},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
 
