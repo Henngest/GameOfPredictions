@@ -1,15 +1,15 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-  <title>Upload Matchdays</title>
-</head>
-
-<body>
 <h1>Upload Matchdays</h1>
+<h4>The text file imported should be in the following format:</h4>
+<span>Matchday <i><u>MatchdayNumber</u></i></span><br>
+<span><i><u>MatchdayStartTime</u></i></span><br>
+<span><i><u>HomeTeam,AwayTeam,FixtureStartTime,HomeTeamWinCoefficient,DrawCoefficient,AwayTeamWinCoefficient</u></i></span><br>
+<span>...</span><br>
+<h4>Example</h4>
+<span>Matchday 1</span><br>
+<span>2023-08-01T00:00:00</span><br>
+<span>Bayern Munich,Borussia Dortmund,2023-08-01T16:00:00,1.70,2.00,2.30</span><br>
+<span>Union Berlin,FC Augsburg,2023-08-01T20:00:00,1.65,2.50,4.00</span><br>
+<span>Werder Bremen,Darmstadt 98,2023-08-01T18:00:00,1.30,2.30,2.70</span><br><br>
 <form>
   <input type="file" name="fileInput" (change)="onFileSelected($event)" />
 </form>
-</body>
-
-</html>

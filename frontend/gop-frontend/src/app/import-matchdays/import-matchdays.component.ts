@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import {ImportMatchdaysService} from "../import-matchdays.service";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-import-matchdays',
@@ -7,9 +9,21 @@ import { Component } from '@angular/core';
 })
 export class ImportMatchdaysComponent {
 
+  seasonId: string | undefined;
+
+  constructor(private importMatchdaysService: ImportMatchdaysService,
+              private route: ActivatedRoute) {
+  }
+
+  ngOnInit(){
+    this.route.params.subscribe(params =>
+      this.seasonId = params['seasonId']
+    )
+  }
+
   onFileSelected(event: any) {
     const file = event.target.files[0];
-    console.log(file);
+    this.importMatchdaysService.importMatchdays(+this.seasonId!!,file).subscribe()
   }
 
 }
