@@ -14,6 +14,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import {AuthInterceptor} from "./interceptors/auth-interceptor";
+import { ImportMatchdaysComponent } from './import-matchdays/import-matchdays.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import {AuthInterceptor} from "./interceptors/auth-interceptor";
     MatchdayDetailsComponent,
     LoginComponent,
     RegisterComponent,
+    ImportMatchdaysComponent,
   ],
   imports: [
     BrowserModule,
