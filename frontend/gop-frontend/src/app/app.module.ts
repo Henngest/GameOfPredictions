@@ -14,6 +14,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import {AuthInterceptor} from "./interceptors/auth-interceptor";
+import { ImportMatchdaysComponent } from './import-matchdays/import-matchdays.component';
 import { HeaderComponent } from './header/header.component';
 import {JWT_OPTIONS, JwtModule} from "@auth0/angular-jwt";
 
@@ -39,6 +40,7 @@ export function jwtOptionsFactory() {
     MatchdayDetailsComponent,
     LoginComponent,
     RegisterComponent,
+    ImportMatchdaysComponent,
     HeaderComponent,
   ],
   imports: [
