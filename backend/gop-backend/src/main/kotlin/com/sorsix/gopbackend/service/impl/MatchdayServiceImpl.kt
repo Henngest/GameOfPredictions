@@ -3,15 +3,14 @@ package com.sorsix.gopbackend.service.impl
 import com.sorsix.gopbackend.model.Fixture
 import com.sorsix.gopbackend.model.Matchday
 import com.sorsix.gopbackend.model.Team
+import com.sorsix.gopbackend.model.enumerations.Outcome
 import com.sorsix.gopbackend.model.exceptions.FixtureDoesNotExistException
 import com.sorsix.gopbackend.model.exceptions.MatchdayDoesNotExistException
 import com.sorsix.gopbackend.model.exceptions.SeasonDoesNotExistException
 import com.sorsix.gopbackend.model.exceptions.TeamDoesNotExistException
-import com.sorsix.gopbackend.repository.FixtureRepository
-import com.sorsix.gopbackend.repository.MatchdayRepository
-import com.sorsix.gopbackend.repository.SeasonRepository
-import com.sorsix.gopbackend.repository.TeamRepository
+import com.sorsix.gopbackend.repository.*
 import com.sorsix.gopbackend.service.MatchdayService
+import com.sorsix.gopbackend.service.PredictionService
 import com.sorsix.gopbackend.service.utils.FileParserUtil
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
@@ -23,7 +22,9 @@ class MatchdayServiceImpl(
     private val matchdayRepository: MatchdayRepository,
     private val fileParserUtil: FileParserUtil,
     private val teamRepository: TeamRepository,
-    private val fixtureRepository: FixtureRepository
+    private val fixtureRepository: FixtureRepository,
+    private val predictionRepository: PredictionRepository,
+    private val predictionService: PredictionService
 ) : MatchdayService {
 
     override fun getAllBySeason(seasonId: Long): MutableList<Matchday> {
@@ -106,6 +107,16 @@ class MatchdayServiceImpl(
                 awayTeamGoals = it.awayTeamGoals,
                 outcome = it.outcome
             ))
+            this.predictionRepository.findAllByFixture(fixture).forEach{ it2 ->
+                val coefficient = when (it2.predictedOutcome) {
+                    Outcome.HOME_TEAM_WIN -> fixture.homeTeamWinCoefficient
+                    Outcome.AWAY_TEAM_WIN -> fixture.awayTeamWinCoefficient
+                    else -> fixture.drawCoefficient
+                }
+                this.predictionService.checkPredictionAndUpdateRating(it2.predictedOutcome, fixture.outcome!!, it2.user, coefficient)
+            }
         }
     }
+
+
 }

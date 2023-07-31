@@ -1,7 +1,9 @@
 package com.sorsix.gopbackend.service.impl
 
 import com.sorsix.gopbackend.model.Prediction
+import com.sorsix.gopbackend.model.User
 import com.sorsix.gopbackend.model.dto.PredictionDto
+import com.sorsix.gopbackend.model.enumerations.Outcome
 import com.sorsix.gopbackend.model.exceptions.FixtureDoesNotExistException
 import com.sorsix.gopbackend.model.exceptions.UserDoesNotExistException
 import com.sorsix.gopbackend.repository.FixtureRepository
@@ -30,6 +32,17 @@ class PredictionServiceImpl(private val userRepository: UserRepository,
             listOfPredictions.add(predictionToSave)
         }
         return listOfPredictions
+    }
+
+    override fun checkPredictionAndUpdateRating(predictedOutcome: Outcome, fixtureOutcome: Outcome, userPredicting: User, coefficient: Double): Boolean {
+        return if(predictedOutcome == fixtureOutcome){
+            userPredicting.rating += coefficient*5
+            true
+        }
+        else{
+            userPredicting.rating -= coefficient*3
+            false
+        }
     }
 
 }
