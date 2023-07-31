@@ -15,6 +15,19 @@ import { RegisterComponent } from './register/register.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import {AuthInterceptor} from "./interceptors/auth-interceptor";
 import { ImportMatchdaysComponent } from './import-matchdays/import-matchdays.component';
+import { HeaderComponent } from './header/header.component';
+import {JWT_OPTIONS, JwtModule} from "@auth0/angular-jwt";
+
+
+export function jwtOptionsFactory() {
+  return {
+    tokenGetter: () => {
+      return localStorage.getItem('jwt');
+    },
+    allowedDomains: [],
+    disallowedRoutes: [],
+  };
+}
 
 @NgModule({
   declarations: [
@@ -28,13 +41,20 @@ import { ImportMatchdaysComponent } from './import-matchdays/import-matchdays.co
     LoginComponent,
     RegisterComponent,
     ImportMatchdaysComponent,
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FontAwesomeModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    JwtModule.forRoot({
+      jwtOptionsProvider: {
+        provide: JWT_OPTIONS,
+        useFactory: jwtOptionsFactory,
+      },
+    }),
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./import-matchdays.component.css']
 })
 export class ImportMatchdaysComponent {
-  
+
   onFileSelected(event: any) {
     const file = event.target.files[0];
     console.log(file);
