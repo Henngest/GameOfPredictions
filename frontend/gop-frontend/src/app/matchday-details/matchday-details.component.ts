@@ -4,7 +4,7 @@ import {Competition} from "../interfaces/competition";
 import {SeasonsService} from "../seasons.service";
 import {ActivatedRoute} from "@angular/router";
 import {forkJoin, switchMap} from "rxjs";
-import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+import {faSpinner} from '@fortawesome/free-solid-svg-icons';
 import {Matchday} from "../interfaces/matchday";
 import {MatchdayService} from "../matchday.service";
 import {DatePipe, DecimalPipe} from "@angular/common";
@@ -45,5 +45,9 @@ export class MatchdayDetailsComponent implements OnInit {
       this.competition = this.season?.competition;
       this.loading = false;
     })
+  }
+
+  hasMatchdayStarted(): boolean {
+    return new Date(this.matchday?.startTime!!).getTime() < Date.now();
   }
 }

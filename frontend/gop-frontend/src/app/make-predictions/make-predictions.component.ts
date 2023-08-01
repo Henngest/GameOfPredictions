@@ -3,7 +3,7 @@ import {DatePipe, DecimalPipe} from "@angular/common";
 import {Matchday} from "../interfaces/matchday";
 import {Season} from "../interfaces/season";
 import {Competition} from "../interfaces/competition";
-import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+import {faSpinner} from '@fortawesome/free-solid-svg-icons';
 import {MatchdayService} from "../matchday.service";
 import {SeasonsService} from "../seasons.service";
 import {ActivatedRoute, Router} from "@angular/router";
@@ -47,32 +47,44 @@ export class MakePredictionsComponent implements OnInit {
 
         const seasonRequest$ = this.seasonsService.getById(seasonId, competitionId);
         const matchdaysRequest$ = this.matchdayService.getById(matchdayId, seasonId);
+        const predictionsRequest$ = this.predictionsService.getPredictionsForMatchdayByUser(matchdayId, this.authService.getUsername()!)
 
-        return forkJoin([seasonRequest$, matchdaysRequest$]);
+        return forkJoin([seasonRequest$, matchdaysRequest$, predictionsRequest$]);
       })
-    ).subscribe(([seasonData, matchdayData]) => {
+    ).subscribe(([seasonData, matchdayData, predictionsData]) => {
       this.matchday = matchdayData;
       this.season = seasonData;
       this.competition = this.season?.competition;
       this.loading = false;
-      this.initPredictions();
+      if (predictionsData.length > 0) {
+        this.predictions = predictionsData;
+      } else {
+        this.initPredictions();
+      }
     });
   }
 
   initPredictions(): void {
     const username = this.authService.getUsername();
     this.predictions = this.matchday?.fixtures?.map(fixture => {
-      return { userId: username!!, fixtureId: fixture.id };
+      return {userId: username!!, fixtureId: fixture.id};
     });
   }
 
+  hasMatchdayStarted(): boolean {
+    return new Date(this.matchday?.startTime!!).getTime() < Date.now();
+  }
+
   onPredictionChange(fixtureId: number, selectedOutcome: Outcome): void {
+    if (this.hasMatchdayStarted()) {
+      return;
+    }
     this.predictions = this.predictions?.map(prediction => {
       if (prediction.fixtureId == fixtureId)
         return {...prediction, predictedOutcome: selectedOutcome};
 
       return prediction;
-    })
+    });
   }
 
   isPredictionSelected(fixtureId: number, selectedOutcome: Outcome): boolean {
