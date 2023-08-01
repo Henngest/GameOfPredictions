@@ -12,10 +12,12 @@ interface FixtureRepository : JpaRepository<Fixture, Long> {
 
     fun findByIdAndMatchday(fixtureId: Long, matchday: Matchday): Fixture?
 
-    @Query("""
+    @Query(
+        """
         SELECT f.* 
         FROM Fixture f
         WHERE f.matchday_id = ?1 AND f.home_team_id = ?2 AND f.away_team_id = ?3 
-    """, nativeQuery = true)
+    """, nativeQuery = true
+    )
     fun findByMatchdayIdAndHomeTeamAndAwayTeam(matchdayId: Long, homeTeam: String, awayTeam: String): Fixture?
 }

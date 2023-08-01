@@ -15,32 +15,41 @@ import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 
 @Service
-class PredictionServiceImpl(private val userRepository: UserRepository,
-                            private val predictionRepository: PredictionRepository,
-                            private val fixtureRepository: FixtureRepository) : PredictionService {
+class PredictionServiceImpl(
+    private val userRepository: UserRepository,
+    private val predictionRepository: PredictionRepository,
+    private val fixtureRepository: FixtureRepository
+) : PredictionService {
 
     override fun createPredictionsForMatchday(predictions: List<PredictionDto>): List<Prediction> {
         val listOfPredictions: MutableList<Prediction> = mutableListOf()
         for (prediction in predictions) {
             val user = userRepository.findByUsername(prediction.userId)
-                    ?: throw UserDoesNotExistException("User with id [${prediction.userId}] does not exist.")
+                ?: throw UserDoesNotExistException("User with id [${prediction.userId}] does not exist.")
             val predictedOutcome = prediction.predictedOutcome
             val fixture = fixtureRepository.findByIdOrNull(prediction.fixtureId)
-                    ?: throw FixtureDoesNotExistException("Fixture with id [${prediction.fixtureId}] does not exist.")
-            val predictionToSave = Prediction(0, predictedOutcome, user, fixture)
+                ?: throw FixtureDoesNotExistException("Fixture with id [${prediction.fixtureId}] does not exist.")
+            val predictionToSave = predictionRepository.findByUserAndFixture(prediction.userId, prediction.fixtureId)
+                ?.copy(
+                    predictedOutcome = prediction.predictedOutcome
+                ) ?: Prediction(0, predictedOutcome, user, fixture)
             predictionRepository.save(predictionToSave)
             listOfPredictions.add(predictionToSave)
         }
         return listOfPredictions
     }
 
-    override fun checkPredictionAndUpdateRating(predictedOutcome: Outcome, fixtureOutcome: Outcome, userPredicting: User, coefficient: Double): Boolean {
-        return if(predictedOutcome == fixtureOutcome){
-            userPredicting.rating += coefficient*5
+    override fun checkPredictionAndUpdateRating(
+        predictedOutcome: Outcome,
+        fixtureOutcome: Outcome,
+        userPredicting: User,
+        coefficient: Double
+    ): Boolean {
+        return if (predictedOutcome == fixtureOutcome) {
+            userPredicting.rating += coefficient * 5
             true
-        }
-        else{
-            userPredicting.rating -= coefficient*3
+        } else {
+            userPredicting.rating -= coefficient * 3
             false
         }
     }
