@@ -1,0 +1,16 @@
+.disable-link {
+  pointer-events: none;
+  color: gray;
+}
+
+.page-links {
+  width: 30%;
+  margin: 0.5em auto;
+  display: flex;
+  justify-content: space-around;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}

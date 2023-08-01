@@ -13,6 +13,7 @@ import {MakePredictionsComponent} from "./make-predictions/make-predictions.comp
 import {ImportMatchdayResultsComponent} from "./import-matchday-results/import-matchday-results.component";
 import {UserProfileComponent} from "./user-profile/user-profile.component";
 import {EditProfileComponent} from "./edit-profile/edit-profile.component";
+import {LeaderboardComponent} from "./leaderboard/leaderboard.component";
 
 const routes: Routes = [
   {path: 'competitions', component: CompetitionsComponent},
@@ -27,7 +28,8 @@ const routes: Routes = [
   {path: 'register', component: RegisterComponent},
   {path: 'competitions/:competitionId/seasons/:seasonId/matchdays/:id/importResults', component: ImportMatchdayResultsComponent},
   {path: 'profile', component: UserProfileComponent},
-  {path: 'profile/edit', component: EditProfileComponent}
+  {path: 'profile/edit', component: EditProfileComponent},
+  {path: 'leaderboard', component: LeaderboardComponent}
 ];
 
 @NgModule({

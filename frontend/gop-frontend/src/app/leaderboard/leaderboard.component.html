@@ -1,1 +1,40 @@
-<p>leaderboard works!</p>
+<h1>Global leaderboard</h1>
+<div *ngIf="page">
+  <table>
+    <thead>
+    <tr>
+      <th>Rank</th>
+      <th>User (Country)</th>
+      <th>Rating</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let user of page.content; let index = index;">
+      <td>{{ page.number * page.size +  index + 1 }}</td>
+      <td>{{ user.username }} ({{ user.country }})</td>
+      <td>{{ user.rating | number:'1.2-2' }}</td>
+    </tr>
+    </tbody>
+  </table>
+  <div class="page-links">
+    <a
+      [ngClass]="{ 'disable-link' : page.first }"
+      [routerLink]="['/leaderboard']"
+      [queryParams]="{ page: page.number - 1, size: page.size }"
+    >
+      Previous
+    </a>
+    <p>{{this.page.number + 1}}</p>
+    <a
+      [ngClass]="{ 'disable-link' : page.last }"
+      [routerLink]="['/leaderboard']"
+      [queryParams]="{ page: page.number + 1, size: page.size }"
+    >
+      Next
+    </a>
+  </div>
+</div>
+<div *ngIf="loading">
+  <fa-icon [icon]="faSpinner"></fa-icon>
+  Loading...
+</div>
