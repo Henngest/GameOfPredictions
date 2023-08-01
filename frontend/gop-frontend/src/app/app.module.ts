@@ -18,6 +18,7 @@ import { ImportMatchdaysComponent } from './import-matchdays/import-matchdays.co
 import { HeaderComponent } from './header/header.component';
 import {JWT_OPTIONS, JwtModule} from "@auth0/angular-jwt";
 import { MakePredictionsComponent } from './make-predictions/make-predictions.component';
+import { ImportMatchdayResultsComponent } from './import-matchday-results/import-matchday-results.component';
 
 
 export function jwtOptionsFactory() {
@@ -44,6 +45,7 @@ export function jwtOptionsFactory() {
     ImportMatchdaysComponent,
     HeaderComponent,
     MakePredictionsComponent,
+    ImportMatchdayResultsComponent,
   ],
   imports: [
     BrowserModule,

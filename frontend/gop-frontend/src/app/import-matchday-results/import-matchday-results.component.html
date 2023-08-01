@@ -1,0 +1,11 @@
+<h1>Upload Matchday Results</h1>
+<h4>The text file imported should be in the following format:</h4>
+<span><i><u>HomeTeam,AwayTeam,HomeTeamGoals,AwayTeamGoals</u></i></span><br>
+<span>...</span><br>
+<h4>Example</h4>
+<span>FC Augsburg,Union Berlin,2,2</span><br>
+<span>Bayern Munich,RB Leipzig,4,0</span><br>
+<span>Werder Bremen,Darmstadt,1,0</span><br><br>
+<form>
+  <input type="file" name="fileInput" (change)="onFileSelected($event)" />
+</form>
