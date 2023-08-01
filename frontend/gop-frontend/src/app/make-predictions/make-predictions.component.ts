@@ -56,13 +56,11 @@ export class MakePredictionsComponent implements OnInit {
       this.season = seasonData;
       this.competition = this.season?.competition;
       this.loading = false;
-      console.log(predictionsData);
       if (predictionsData.length > 0) {
         this.predictions = predictionsData;
       } else {
         this.initPredictions();
       }
-      console.log(this.predictions);
     });
   }
 
@@ -73,13 +71,20 @@ export class MakePredictionsComponent implements OnInit {
     });
   }
 
+  hasMatchdayStarted(): boolean {
+    return new Date(this.matchday?.startTime!!).getTime() < Date.now();
+  }
+
   onPredictionChange(fixtureId: number, selectedOutcome: Outcome): void {
+    if (this.hasMatchdayStarted()) {
+      return;
+    }
     this.predictions = this.predictions?.map(prediction => {
       if (prediction.fixtureId == fixtureId)
         return {...prediction, predictedOutcome: selectedOutcome};
 
       return prediction;
-    })
+    });
   }
 
   isPredictionSelected(fixtureId: number, selectedOutcome: Outcome): boolean {

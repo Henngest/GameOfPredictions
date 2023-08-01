@@ -2,7 +2,11 @@
   <h1>
     Matchday {{matchday.matchdayNumber}} of {{competition?.name}} {{season?.name}} season
   </h1>
-  <h3>Fixtures</h3>
+  <div class="d-flex jusitfy-content-between">
+    <h3>Fixtures</h3>
+    <p *ngIf="!hasMatchdayStarted()"><em>Predictions close at: {{matchday.startTime| date: 'MM-dd-yyyy HH:mm'}}</em></p>
+    <p *ngIf="hasMatchdayStarted()"><em>Predictions closed at: {{matchday.startTime| date: 'MM-dd-yyyy HH:mm'}}</em></p>
+  </div>
   <table>
     <thead class="table-head">
     <tr>
@@ -55,7 +59,12 @@
   </table>
 
   <p>{{errorMessage}}</p>
-  <button (click)="onSubmit()">Submit</button>
+  <button
+    *ngIf="!hasMatchdayStarted()"
+    (click)="onSubmit()"
+  >
+    Submit
+  </button>
 </div>
 <div *ngIf="loading">
   <fa-icon [icon]="faSpinner"></fa-icon>

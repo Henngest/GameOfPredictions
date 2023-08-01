@@ -41,7 +41,7 @@
     </tbody>
   </table>
   <a routerLink="/competitions/{{competition?.id}}/seasons/{{season?.id}}/matchdays/{{matchday.id}}/predict">
-    Make predictions
+    {{ hasMatchdayStarted() ? 'See predictions' : 'Make predictions' }}
   </a>
 </div>
 <div *ngIf="loading">
