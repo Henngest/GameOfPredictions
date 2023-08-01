@@ -15,7 +15,7 @@ data class User(
     var rating: Double = 0.0, //TODO() Make default value in database 0
     @Enumerated(value = EnumType.STRING)
     val role: Role,
-    val country: String
+    var country: String
 ) : UserDetails {
 
     override fun getAuthorities(): MutableCollection<out GrantedAuthority> {

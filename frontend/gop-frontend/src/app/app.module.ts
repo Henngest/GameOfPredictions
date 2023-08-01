@@ -20,6 +20,7 @@ import {JWT_OPTIONS, JwtModule} from "@auth0/angular-jwt";
 import { MakePredictionsComponent } from './make-predictions/make-predictions.component';
 import { ImportMatchdayResultsComponent } from './import-matchday-results/import-matchday-results.component';
 import { LeaderboardComponent } from './leaderboard/leaderboard.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 
 export function jwtOptionsFactory() {
@@ -48,6 +49,7 @@ export function jwtOptionsFactory() {
     MakePredictionsComponent,
     ImportMatchdayResultsComponent,
     LeaderboardComponent,
+    UserProfileComponent,
   ],
   imports: [
     BrowserModule,

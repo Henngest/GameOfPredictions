@@ -12,6 +12,6 @@ export class LeaderboardService {
   }
 
   getUsersSortedByRating() {
-    
+
   }
 }
