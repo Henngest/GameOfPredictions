@@ -19,6 +19,7 @@ import { HeaderComponent } from './header/header.component';
 import {JWT_OPTIONS, JwtModule} from "@auth0/angular-jwt";
 import { MakePredictionsComponent } from './make-predictions/make-predictions.component';
 import { ImportMatchdayResultsComponent } from './import-matchday-results/import-matchday-results.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 
 export function jwtOptionsFactory() {
@@ -46,6 +47,7 @@ export function jwtOptionsFactory() {
     HeaderComponent,
     MakePredictionsComponent,
     ImportMatchdayResultsComponent,
+    UserProfileComponent,
   ],
   imports: [
     BrowserModule,
