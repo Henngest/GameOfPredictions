@@ -23,7 +23,7 @@ export class RegisterComponent {
               private router: Router) {
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
     const controlOptions: AbstractControlOptions = {updateOn: 'submit'};
 
     this.registerForm = this.formBuilder.group({

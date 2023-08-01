@@ -12,6 +12,7 @@ import {ImportMatchdaysComponent} from "./import-matchdays/import-matchdays.comp
 import {MakePredictionsComponent} from "./make-predictions/make-predictions.component";
 import {ImportMatchdayResultsComponent} from "./import-matchday-results/import-matchday-results.component";
 import {UserProfileComponent} from "./user-profile/user-profile.component";
+import {EditProfileComponent} from "./edit-profile/edit-profile.component";
 
 const routes: Routes = [
   {path: 'competitions', component: CompetitionsComponent},
@@ -25,7 +26,8 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'competitions/:competitionId/seasons/:seasonId/matchdays/:id/importResults', component: ImportMatchdayResultsComponent},
-  {path: 'profile', component: UserProfileComponent}
+  {path: 'profile', component: UserProfileComponent},
+  {path: 'profile/edit', component: EditProfileComponent}
 ];
 
 @NgModule({

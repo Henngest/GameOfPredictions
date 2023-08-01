@@ -21,6 +21,7 @@ import { MakePredictionsComponent } from './make-predictions/make-predictions.co
 import { ImportMatchdayResultsComponent } from './import-matchday-results/import-matchday-results.component';
 import { LeaderboardComponent } from './leaderboard/leaderboard.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
 
 
 export function jwtOptionsFactory() {
@@ -50,6 +51,7 @@ export function jwtOptionsFactory() {
     ImportMatchdayResultsComponent,
     LeaderboardComponent,
     UserProfileComponent,
+    EditProfileComponent,
   ],
   imports: [
     BrowserModule,
