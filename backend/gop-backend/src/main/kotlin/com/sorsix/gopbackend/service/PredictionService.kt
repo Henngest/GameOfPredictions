@@ -10,4 +10,6 @@ interface PredictionService {
     fun createPredictionsForMatchday(predictions: List<PredictionDto>): List<Prediction>
 
     fun checkPredictionAndUpdateRating(predictedOutcome: Outcome, fixtureOutcome: Outcome, userPredicting: User, coefficient: Double): Boolean
+
+    fun getAllPredictionsForMatchdayByUser(matchdayId: Long, userId: String): List<PredictionDto>
 }

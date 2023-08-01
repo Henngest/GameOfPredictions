@@ -54,4 +54,14 @@ class PredictionServiceImpl(
         }
     }
 
+    override fun getAllPredictionsForMatchdayByUser(matchdayId: Long, userId: String): List<PredictionDto> {
+        return this.predictionRepository.findAllByUserForMatchday(userId, matchdayId)
+            .map {
+                PredictionDto(
+                    predictedOutcome = it.predictedOutcome,
+                    userId = it.user.username,
+                    fixtureId = it.fixture.id
+                )
+            }
+    }
 }

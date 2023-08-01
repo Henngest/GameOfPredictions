@@ -17,4 +17,13 @@ interface PredictionRepository : JpaRepository<Prediction, Long> {
     """, nativeQuery = true
     )
     fun findByUserAndFixture(user: String, fixtureId: Long): Prediction?
+
+    @Query(
+        """
+        SELECT p.* 
+        FROM Prediction p LEFT JOIN FIXTURE f ON p.fixture_id = f.id
+        WHERE p.user_id = ?1 AND f.matchday_id = ?2 
+    """, nativeQuery = true
+    )
+    fun findAllByUserForMatchday(user: String, matchdayId: Long): MutableList<Prediction>
 }
