@@ -16,4 +16,8 @@ export class PredictionsService {
   submitPredictions(predictions: Prediction[]): Observable<any> {
     return this.http.post<any>("/api/predict", predictions);
   }
+
+  getPredictionsForMatchdayByUser(matchdayId: number, user: string): Observable<Prediction[]> {
+    return this.http.get<Prediction[]>(`/api/matchday/${matchdayId}/predictionsByUser/${user}`);
+  }
 }
