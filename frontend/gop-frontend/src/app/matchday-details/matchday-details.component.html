@@ -43,6 +43,7 @@
   <a routerLink="/competitions/{{competition?.id}}/seasons/{{season?.id}}/matchdays/{{matchday.id}}/predict">
     {{ hasMatchdayStarted() ? 'See predictions' : 'Make predictions' }}
   </a>
+  <a routerLink="/competitions/{{competition?.id}}/seasons/{{season?.id}}/matchdays/{{matchday.id}}/importResults">Import results</a>
 </div>
 <div *ngIf="loading">
   <fa-icon [icon]="faSpinner"></fa-icon>

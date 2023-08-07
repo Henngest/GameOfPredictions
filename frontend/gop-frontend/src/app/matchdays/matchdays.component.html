@@ -1,12 +1,13 @@
 <div *ngIf="season">
   <h1>Matchdays for season {{season.name}}</h1>
-
+  <a routerLink="/competitions/{{season.competition.id}}/seasons/{{season.id}}/matchdays/import">Import a matchday</a>
   <ul *ngIf="matchdays">
     <li *ngFor="let m of matchdays">
       <a routerLink="/competitions/{{season.competition.id}}/seasons/{{season.id}}/matchdays/{{m.id}}">
         Matchday #{{ m.matchdayNumber }}
       </a>
       (Starts {{m.startTime | date: 'MM-dd-yyyy HH:mm' }})
+      <a routerLink="/competitions/{{season.competition.id}}/seasons/{{season.id}}/matchdays/{{m.id}}/importResults">Import results</a>
     </li>
   </ul>
 </div>
