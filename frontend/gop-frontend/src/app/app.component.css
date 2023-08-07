@@ -3,5 +3,5 @@
 }
 
 .main-container > app-sidebar {
-  width: 30%;
+  margin-right: 20px;
 }
