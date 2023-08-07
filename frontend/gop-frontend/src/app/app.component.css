@@ -2,6 +2,6 @@
   display: flex;
 }
 
-.main-container app-sidebar {
-  width: 85%;
+.main-container > app-sidebar {
+  width: 30%;
 }
