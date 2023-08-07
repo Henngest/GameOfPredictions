@@ -11,7 +11,7 @@
     <tbody>
     <tr *ngFor="let user of page.content; let index = index;">
       <td>{{ page.number * page.size +  index + 1 }}</td>
-      <td>{{ user.username }} ({{ user.country }})</td>
+      <td>{{ user.username }} ({{ getCountryCode(user.country) }})</td>
       <td>{{ user.rating | number:'1.2-2' }}</td>
     </tr>
     </tbody>

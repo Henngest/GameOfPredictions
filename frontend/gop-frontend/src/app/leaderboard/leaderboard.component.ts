@@ -5,6 +5,8 @@ import {ActivatedRoute} from "@angular/router";
 import {mergeMap} from "rxjs";
 import {DecimalPipe} from "@angular/common";
 import {faSpinner} from '@fortawesome/free-solid-svg-icons';
+import {countryList} from "../CountryList";
+
 
 @Component({
   selector: 'app-leaderboard',
@@ -17,6 +19,7 @@ export class LeaderboardComponent implements OnInit {
   page: Page | undefined;
   loading: boolean = true;
   faSpinner = faSpinner;
+  countryList = countryList;
 
   constructor(private leaderboardService: LeaderboardService,
               private route: ActivatedRoute) {
@@ -36,4 +39,7 @@ export class LeaderboardComponent implements OnInit {
     })
   }
 
+  getCountryCode(country: string): string {
+    return countryList.find(c => c.name == country)?.code!!;
+  }
 }
