@@ -14,6 +14,8 @@ import {ImportMatchdayResultsComponent} from "./import-matchday-results/import-m
 import {UserProfileComponent} from "./user-profile/user-profile.component";
 import {EditProfileComponent} from "./edit-profile/edit-profile.component";
 import {LeaderboardComponent} from "./leaderboard/leaderboard.component";
+import {IsAdminGuard} from "./guards/is-admin.guard";
+import {IsAuthenticatedGuard} from "./guards/is-authenticated.guard";
 
 const routes: Routes = [
   {path: 'competitions', component: CompetitionsComponent},
@@ -22,14 +24,14 @@ const routes: Routes = [
   {path: 'competitions/:id/seasons', component: SeasonsComponent},
   {path: 'competitions/:competitionId/seasons/:id', component: SeasonDetailsComponent},
   {path: 'competitions/:competitionId/seasons/:seasonId/matchdays', component: MatchdaysComponent},
-  {path: 'competitions/:competitionId/seasons/:seasonId/matchdays/import', component: ImportMatchdaysComponent},
+  {path: 'competitions/:competitionId/seasons/:seasonId/matchdays/import', component: ImportMatchdaysComponent, canActivate: [IsAdminGuard], data: { requiredRoles: ['ROLE_ADMIN'] }},
   {path: 'competitions/:competitionId/seasons/:seasonId/matchdays/:id', component: MatchdayDetailsComponent},
   {path: 'competitions/:competitionId/seasons/:seasonId/matchdays/:id/predict', component: MakePredictionsComponent},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
-  {path: 'competitions/:competitionId/seasons/:seasonId/matchdays/:id/importResults', component: ImportMatchdayResultsComponent},
-  {path: 'profile', component: UserProfileComponent},
-  {path: 'profile/edit', component: EditProfileComponent},
+  {path: 'competitions/:competitionId/seasons/:seasonId/matchdays/:id/importResults', component: ImportMatchdayResultsComponent, canActivate: [IsAdminGuard], data: { requiredRoles: ['ROLE_ADMIN'] }},
+  {path: 'profile', component: UserProfileComponent, canActivate: [IsAuthenticatedGuard]},
+  {path: 'profile/edit', component: EditProfileComponent, canActivate: [IsAuthenticatedGuard]},
   {path: 'leaderboard', component: LeaderboardComponent}
 ];
 
