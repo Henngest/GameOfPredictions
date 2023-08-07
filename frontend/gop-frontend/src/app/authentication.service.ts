@@ -61,12 +61,27 @@ export class AuthenticationService {
     return this.isLoggedInSubject.asObservable();
   }
 
+  getToken(): string | null {
+    return localStorage.getItem('jwt');
+  }
+
   getUsername(): string | undefined {
-    const token = localStorage.getItem("jwt");
+    const token = this.getToken();
     if (token) {
       const tokenPayload = this.jwtHelper.decodeToken(token);
       return tokenPayload.sub;
     }
     return undefined;
   }
+
+  getRoles(): string[] | undefined {
+    const token = this.getToken();
+    if (token) {
+      const decodedToken = this.jwtHelper.decodeToken(token);
+      return decodedToken.roles || [];
+    }
+    return undefined;
+  }
+
+
 }

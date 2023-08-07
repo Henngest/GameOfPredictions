@@ -1,7 +1,8 @@
 import {Component} from '@angular/core';
 import {AbstractControlOptions, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AuthenticationService} from "../authentication.service";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
+import {map} from "rxjs";
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,8 @@ export class LoginComponent {
 
   constructor(private formBuilder: FormBuilder,
               private authService: AuthenticationService,
-              private router: Router) {
+              private router: Router,
+              private route: ActivatedRoute) {
   }
 
   ngOnInit() {
@@ -25,6 +27,10 @@ export class LoginComponent {
       username: ['', Validators.required],
       password: ['', Validators.required]
     }, controlOptions);
+
+    this.route.queryParamMap.pipe(
+      map(params => params.has('errorMessage') ? params.get('errorMessage')!! : undefined)
+    ).subscribe(value => this.errorMessage = value)
   }
 
   submit() {
