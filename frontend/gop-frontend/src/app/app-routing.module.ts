@@ -17,6 +17,7 @@ import {LeaderboardComponent} from "./leaderboard/leaderboard.component";
 
 const routes: Routes = [
   {path: 'competitions', component: CompetitionsComponent},
+  {path: '', redirectTo: '/competitions', pathMatch: 'full'},
   {path: 'competitions/:id', component: CompetitionDetailsComponent},
   {path: 'competitions/:id/seasons', component: SeasonsComponent},
   {path: 'competitions/:competitionId/seasons/:id', component: SeasonDetailsComponent},

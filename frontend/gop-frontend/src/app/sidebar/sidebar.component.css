@@ -1,0 +1,19 @@
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.5em;
+  padding: 1% 0;
+  background-color: #eeeeee;
+  height: 100vh;
+}
+
+.sidebar > a {
+  margin-top: 0.3em;
+  padding: 5%;
+}
+
+.sidebar > a:hover {
+  background-color: #e3e3e3;
+  color: var(--light-blue);
+
+}

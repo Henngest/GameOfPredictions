@@ -22,6 +22,7 @@ import { ImportMatchdayResultsComponent } from './import-matchday-results/import
 import { LeaderboardComponent } from './leaderboard/leaderboard.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
 
 
 export function jwtOptionsFactory() {
@@ -52,6 +53,7 @@ export function jwtOptionsFactory() {
     LeaderboardComponent,
     UserProfileComponent,
     EditProfileComponent,
+    SidebarComponent,
   ],
   imports: [
     BrowserModule,

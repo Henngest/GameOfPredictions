@@ -1,0 +1,22 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.5em;
+  box-shadow: 0 4px 4px -2px gray;
+  padding: 0.6em;
+}
+
+.header-auth-links {
+  width: 20%;
+  display: flex;
+  justify-content: space-around;
+  margin: auto 0;
+}
+
+.logo-image {
+  width: 20%;
+}
+
+
+
+

@@ -1,0 +1,7 @@
+.main-container {
+  display: flex;
+}
+
+.main-container app-sidebar {
+  width: 85%;
+}

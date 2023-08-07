@@ -4,6 +4,7 @@ import {countryList} from "../CountryList";
 import {AuthenticationService} from "../authentication.service";
 import {UserProfileService} from "../user-profile.service";
 import {User} from "../interfaces/user";
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -17,7 +18,8 @@ export class EditProfileComponent {
 
   constructor(private formBuilder: FormBuilder,
               private authService: AuthenticationService,
-              private userProfileService: UserProfileService) {
+              private userProfileService: UserProfileService,
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -31,8 +33,8 @@ export class EditProfileComponent {
   submit() {
     const currentUser = this.authService.getUsername();
     if (currentUser) {
-      console.log(this.editForm.get('country')?.value)
-      this.userProfileService.editUserProfile(currentUser,this.editForm.get('country')?.value).subscribe();
+      this.userProfileService.editUserProfile(currentUser,this.editForm.get('country')?.value)
+        .subscribe(_ => this.router.navigateByUrl("/profile"));
     }
   }
 }
