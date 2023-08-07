@@ -1,34 +1,34 @@
 <div class="register-container">
   <h2>Register</h2>
-  <div *ngIf="errors">
-    <div *ngFor="let e of errors.errorMessages">
-      <span>{{e}}</span><br>
-    </div>
-  </div>
   <form [formGroup]="registerForm" (ngSubmit)="submit()">
     <div>
       <label for="username">Username:</label>
       <input type="text" id="username" name="username" formControlName="username" required>
     </div>
-    <div *ngIf="isSubmitted && registerForm.get('username')?.invalid">
+    <div class="error-message" [class.show]="isSubmitted && registerForm.get('username')?.invalid">
       Username is required.
     </div>
     <div>
       <label for="password">Password:</label>
       <input type="password" id="password" name="password" formControlName="password" required>
     </div>
-    <div *ngIf="isSubmitted && registerForm.get('password')?.invalid">
+    <div class="error-message" [class.show]="isSubmitted && registerForm.get('password')?.invalid">
       Password is required.
     </div>
     <div>
       <label for="confirmPassword">Confirm Password:</label>
       <input type="password" id="confirmPassword" name="confirmPassword" formControlName="confirmPassword" required>
     </div>
-    <div *ngIf="isSubmitted && registerForm.get('confirmPassword')?.invalid">
+    <div class="error-message" [class.show]="isSubmitted && registerForm.get('confirmPassword')?.invalid">
       Confirm password is required.
     </div>
-    <div *ngIf="!passwordsMatch">
+    <div class="error-message" [class.show]="!passwordsMatch">
       Passwords need to match.
+    </div>
+    <div class="error-message" [class.show]="errors && errors.errorMessages">
+      <div *ngFor="let e of errors?.errorMessages">
+        <span>{{e}}</span><br>
+      </div>
     </div>
     <div>
       <label for="country">Country:</label>
@@ -39,7 +39,7 @@
         </option>
       </select>
     </div>
-    <div *ngIf="isSubmitted && registerForm.get('country')?.invalid">
+    <div class="error-message" [class.show]="isSubmitted && registerForm.get('country')?.invalid">
       Country is required.
     </div>
     <button type="submit">Register</button>

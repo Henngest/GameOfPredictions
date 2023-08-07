@@ -1,0 +1,82 @@
+/* Reset some default styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Style the login container */
+.login-container {
+  max-width: 400px;
+  margin: 50px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #eeeeee;
+}
+
+/* Style the form heading */
+.login-container h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+/* Style the form elements */
+.login-container label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.input-field {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+/* Highlight invalid input fields */
+.input-field:invalid {
+  border-color: #ff6b6b;
+}
+
+/* Style error messages */
+.login-container div.error-message {
+  font-size: 14px;
+  color: #ff6b6b;
+  display: none;
+  margin-top: 1px;
+  transition: opacity 0.3s, margin 0.3s;
+}
+
+.login-container div.error-message.show {
+  display: block;
+  opacity: 1;
+  margin-top: 1px;
+}
+
+/* Style the login button */
+.login-container button[type="submit"] {
+  background-color: var(--light-blue);
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.login-container button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+/* Style the "Sign up" link */
+.login-container a {
+  color: var(--light-blue);
+  text-decoration: none;
+}
+
+.login-container a:hover {
+  text-decoration: underline;
+}
