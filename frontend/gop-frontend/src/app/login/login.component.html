@@ -4,16 +4,16 @@
   <form [formGroup]="loginForm" (ngSubmit)="submit()">
     <div>
       <label for="username">Username:</label>
-      <input type="text" id="username" name="username" formControlName="username" required>
+      <input class="input-field" type="text" id="username" name="username" formControlName="username" required>
     </div>
-    <div *ngIf="isSubmitted && loginForm.get('username')?.invalid">
+    <div class="error-message" [class.show]="isSubmitted && loginForm.get('username')?.invalid">
       Username is required.
     </div>
     <div>
       <label for="password">Password:</label>
-      <input type="password" id="password" name="password" formControlName="password" required>
+      <input class="input-field" type="password" id="password" name="password" formControlName="password" required>
     </div>
-    <div *ngIf="isSubmitted && loginForm.get('password')?.invalid">
+    <div class="error-message" [class.show]="isSubmitted && loginForm.get('password')?.invalid">
       Password is required.
     </div>
     <button type="submit">Login</button>
