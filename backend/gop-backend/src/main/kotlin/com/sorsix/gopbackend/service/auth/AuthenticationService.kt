@@ -28,7 +28,11 @@ class AuthenticationService(
         )
         user = this.userRepository.save(user)
 
-        val jwtToken = jwtService.generateToken(userDetails = user)
+        val jwtToken = jwtService
+            .generateToken(
+                userDetails = user,
+                extraClaims = mapOf("roles" to user.authorities.map { it.authority })
+            )
         return AuthenticationDto(jwtToken)
     }
 
@@ -41,7 +45,10 @@ class AuthenticationService(
         );
 
         val user = this.userRepository.findByUsername(userLoginDto.username)
-        val jwtToken = jwtService.generateToken(userDetails = user!!)
+        val jwtToken = jwtService.generateToken(
+            userDetails = user!!,
+            extraClaims = mapOf("roles" to user.authorities.map { it.authority })
+        )
         return AuthenticationDto(jwtToken)
     }
 }
