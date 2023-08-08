@@ -4,18 +4,20 @@ ul {
 
 a {
   text-decoration: none;
+  color: var(--dark-blue);
 }
 
 a:link {
-  color: inherit;
+  color: var(--dark-blue);
 }
 
 a:visited {
-  color: inherit;
+  color: var(--dark-blue);
 }
 
 a:hover {
   cursor: pointer;
+  color: var(--light-blue);
 }
 
 :root {
@@ -27,6 +29,7 @@ body {
   font-family: 'IBM Plex Sans', sans-serif;
   margin: 0;
   padding: 0;
+  color: var(--dark-blue);
 }
 
 .btn-primary {

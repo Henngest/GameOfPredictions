@@ -29,4 +29,8 @@ export class HeaderComponent implements OnInit {
   getUsername() {
     return this.authService.getUsername();
   }
+
+  toHomePage() {
+    this.router.navigateByUrl("/competitions");
+  }
 }
