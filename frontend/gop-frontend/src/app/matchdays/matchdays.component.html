@@ -3,11 +3,12 @@
   <a
     *ngIf="authenticationService.isUserAdmin()"
     routerLink="/competitions/{{season.competition.id}}/seasons/{{season.id}}/matchdays/import"
+    class="import-button"
   >
     Import a matchday
   </a>
   <ul *ngIf="matchdays">
-    <li *ngFor="let m of matchdays">
+    <li class="matchday-list-item" *ngFor="let m of matchdays">
       <a routerLink="/competitions/{{season.competition.id}}/seasons/{{season.id}}/matchdays/{{m.id}}">
         Matchday #{{ m.matchdayNumber }}
       </a>
@@ -15,6 +16,7 @@
       <a
         *ngIf="authenticationService.isUserAdmin()"
         routerLink="/competitions/{{season.competition.id}}/seasons/{{season.id}}/matchdays/{{m.id}}/importResults"
+        class="import-button"
       >
         Import results
       </a>
