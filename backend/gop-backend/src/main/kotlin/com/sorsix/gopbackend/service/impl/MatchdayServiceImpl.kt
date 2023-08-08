@@ -116,7 +116,16 @@ class MatchdayServiceImpl(
                 this.predictionService.checkPredictionAndUpdateRating(it2.predictedOutcome, fixture.outcome!!, it2.user, coefficient)
             }
         }
+
+        closeMatchdayForPredictions(matchdayId)
     }
 
+    private fun closeMatchdayForPredictions(matchdayId: Long) {
+        val matchday = this.matchdayRepository.findByIdOrNull(matchdayId)
+           ?: throw MatchdayDoesNotExistException("Matchday with id [$matchdayId] does not exist.")
 
+        this.matchdayRepository.save(matchday.copy(
+            isFinished = true
+        ))
+    }
 }
