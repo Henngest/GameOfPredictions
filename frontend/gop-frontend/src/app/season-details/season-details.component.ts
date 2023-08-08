@@ -1,11 +1,11 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {Season} from "../interfaces/season";
 import {SeasonsService} from "../seasons.service";
 import {ActivatedRoute} from "@angular/router";
 import {filter, forkJoin, map, mergeMap} from "rxjs";
 import {Competition} from "../interfaces/competition";
 import {CompetitionsService} from "../competitions.service";
-import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+import {faSpinner} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-season-details',
@@ -19,13 +19,14 @@ export class SeasonDetailsComponent {
   seasonId: string | undefined;
   loading: boolean = true;
   faSpinner = faSpinner;
+  showAllMatchdays = false;
 
   constructor(private seasonService: SeasonsService,
               private competitionService: CompetitionsService,
               private route: ActivatedRoute) {
   }
 
-  ngOnInit(): void{
+  ngOnInit(): void {
     this.route.params.subscribe(
       params => {
         this.seasonId = params['id'];
@@ -46,6 +47,10 @@ export class SeasonDetailsComponent {
         this.loading = false;
       }
     );
+  }
+
+  onShowMatchdaysClick() {
+    this.showAllMatchdays = true;
   }
 
 }

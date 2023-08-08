@@ -14,7 +14,7 @@ export class MatchdayService {
   ) {
   }
 
-  getAll(seasonId: number): Observable<Matchday[]> {
+  getAllBySeasonId(seasonId: number): Observable<Matchday[]> {
     return this.http.get<Matchday[]>(`/api/seasons/${seasonId}/matchdays`);
   }
 
