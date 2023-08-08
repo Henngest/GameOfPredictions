@@ -15,7 +15,8 @@ create table matchday
     id              bigserial primary key,
     matchday_number bigint,
     season_id       bigint references season,
-    start_time      timestamp not null
+    start_time      timestamp not null,
+    is_finished     boolean default false
 );
 create table team
 (

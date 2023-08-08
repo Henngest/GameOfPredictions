@@ -31,7 +31,7 @@ class MatchdayServiceImpl(
         val season = seasonRepository.findByIdOrNull(seasonId)
             ?: throw SeasonDoesNotExistException("Season with id [$seasonId] does not exist.")
 
-        return matchdayRepository.findAllBySeason(season)
+        return matchdayRepository.findAllBySeasonOrderByMatchdayNumber(season)
     }
 
     override fun getByIdAndSeason(matchdayId: Long, seasonId: Long): Matchday {
@@ -116,7 +116,16 @@ class MatchdayServiceImpl(
                 this.predictionService.checkPredictionAndUpdateRating(it2.predictedOutcome, fixture.outcome!!, it2.user, coefficient)
             }
         }
+
+        closeMatchdayForPredictions(matchdayId)
     }
 
+    private fun closeMatchdayForPredictions(matchdayId: Long) {
+        val matchday = this.matchdayRepository.findByIdOrNull(matchdayId)
+           ?: throw MatchdayDoesNotExistException("Matchday with id [$matchdayId] does not exist.")
 
+        this.matchdayRepository.save(matchday.copy(
+            isFinished = true
+        ))
+    }
 }

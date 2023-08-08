@@ -25,6 +25,7 @@ export class ImportMatchdayResultsComponent {
     )
   }
 
+  // TODO: Create a button with onSubmit event for importing results, not like this!
   onFileSelected(event: any) {
     const file = event.target.files[0];
     this.importMatchdayResultsService.importMatchdayResults(+this.seasonId!!, +this.matchdayId!!, file).subscribe()

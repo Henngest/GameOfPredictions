@@ -14,7 +14,7 @@
       </a>
       (Starts {{m.startTime | date: 'MM-dd-yyyy HH:mm' }})
       <a
-        *ngIf="authenticationService.isUserAdmin()"
+        *ngIf="authenticationService.isUserAdmin() && !m.isFinished"
         routerLink="/competitions/{{season.competition.id}}/seasons/{{season.id}}/matchdays/{{m.id}}/importResults"
         class="import-button"
       >
