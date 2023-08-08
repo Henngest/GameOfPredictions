@@ -13,15 +13,14 @@
   display: flex;
   justify-content: space-around;
   margin: auto 0;
-  color: var(--dark-blue);
-}
-
-.header-auth-links a:hover {
-  color: var(--light-blue);
 }
 
 .logo-image {
   width: 20%;
+}
+
+.logo-image:hover {
+  cursor: pointer;
 }
 
 

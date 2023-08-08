@@ -7,17 +7,4 @@
   text-align: center;
   font-size: 1.2em;
   letter-spacing: 0.1em;
-  color: var(--dark-blue);
-}
-
-.competition-heading {
-  color: var(--dark-blue);
-}
-
-.competition a {
-  color: var(--dark-blue);
-}
-
-.competition :hover {
-  color: var(--light-blue);
 }
