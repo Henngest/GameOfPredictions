@@ -3,7 +3,7 @@ import {Competition} from "../interfaces/competition";
 import {CompetitionsService} from "../competitions.service";
 import {ActivatedRoute} from "@angular/router";
 import {filter, map, mergeMap} from "rxjs";
-import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+import {faSpinner} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-competition-details',
@@ -15,6 +15,7 @@ export class CompetitionDetailsComponent implements OnInit {
   competition: Competition | undefined;
   loading = true;
   faSpinner = faSpinner;
+  showAllSeasons = false;
 
   constructor(
     private competitionsService: CompetitionsService,
@@ -31,5 +32,9 @@ export class CompetitionDetailsComponent implements OnInit {
       this.competition = value;
       this.loading = false;
     })
+  }
+
+  onShowAllSeasonsClick() {
+    this.showAllSeasons = true;
   }
 }

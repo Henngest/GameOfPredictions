@@ -3,9 +3,14 @@
 <div *ngIf="competition">
   <h3>{{ competition.name }}</h3>
   <p>{{ competition.shortHistory }}</p>
-  <a routerLink="/competitions/{{competition.id}}/seasons">Show all seasons</a>
+  <a (click)="onShowAllSeasonsClick()">Show all seasons</a>
+  <app-seasons
+    *ngIf="showAllSeasons"
+    [competitionId]="competition.id"
+  ></app-seasons>
 </div>
 
 <div *ngIf="loading">
-  <fa-icon [icon]="faSpinner"></fa-icon> Loading...
+  <fa-icon [icon]="faSpinner"></fa-icon>
+  Loading...
 </div>

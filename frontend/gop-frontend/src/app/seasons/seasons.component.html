@@ -1,8 +1,6 @@
-<h1>Seasons for {{competition?.name}}</h1>
-
 <ul>
   <li *ngFor="let s of seasons">
-    <a routerLink="/competitions/{{competition?.id}}/seasons/{{s.id}}">
+    <a routerLink="/competitions/{{s.competition.id}}/seasons/{{s.id}}">
       {{ s.name }}
     </a>
   </li>

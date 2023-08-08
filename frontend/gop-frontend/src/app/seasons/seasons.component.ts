@@ -1,45 +1,33 @@
-import { Component } from '@angular/core';
+import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
 import {Season} from "../interfaces/season";
 import {SeasonsService} from "../seasons.service";
-import {ActivatedRoute} from "@angular/router";
-import {filter, forkJoin, map, mergeMap} from "rxjs";
-import {CompetitionsService} from "../competitions.service";
-import {Competition} from "../interfaces/competition";
-import { faSpinner } from '@fortawesome/free-solid-svg-icons';
-
+import {faSpinner} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-seasons',
   templateUrl: './seasons.component.html',
   styleUrls: ['./seasons.component.css']
 })
-export class SeasonsComponent {
+export class SeasonsComponent implements OnChanges {
 
+  @Input()
+  competitionId: number | undefined;
   seasons: Season[] | undefined;
-  competition: Competition | undefined;
   loading: boolean = true;
   faSpinner = faSpinner;
 
-  constructor(private seasonsService: SeasonsService,
-              private competitionService: CompetitionsService,
-              private route: ActivatedRoute) {
+  constructor(private seasonsService: SeasonsService
+  ) {
   }
 
-  ngOnInit(): void {
-    this.route.paramMap.pipe(
-      filter(params => params.has('id')),
-      map(params => params.get('id')!!),
-      mergeMap(param => {
-        const competitionObs = this.competitionService.getById(+param);
-        const seasonObs = this.seasonsService.getAll(+param);
-        return forkJoin([seasonObs, competitionObs]);
-      })
-    ).subscribe(
-      ([seasonData, competitionData]) => {
-        this.competition = competitionData;
-        this.seasons = seasonData;
-        this.loading = false;
-      }
-    );
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['competitionId']) {
+      this.seasonsService.getAllByCompetitionId(this.competitionId!!)
+        .subscribe(value => {
+          this.seasons = value;
+          this.loading = false;
+        });
+    }
   }
+
 }

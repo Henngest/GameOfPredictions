@@ -14,7 +14,7 @@ export class SeasonsService {
   ) {
   }
 
-  getAll(competitionId: number): Observable<Season[]> {
+  getAllByCompetitionId(competitionId: number): Observable<Season[]> {
     return this.http.get<Season[]>(`/api/competition/${competitionId}/seasons`);
   }
 
