@@ -1,8 +1,12 @@
 <div *ngIf="season && competition">
   <h1>Season {{season?.name}} of {{competition?.name}}</h1>
-  <a routerLink="/competitions/{{competition.id}}/seasons/{{season.id}}/matchdays">
+  <a (click)="onShowMatchdaysClick()">
     Show matchdays
   </a>
+  <app-matchdays
+    *ngIf="showAllMatchdays"
+    [season]="season"
+  ></app-matchdays>
 </div>
 
 <div *ngIf="loading">
