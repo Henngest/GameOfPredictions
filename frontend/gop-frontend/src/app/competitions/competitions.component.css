@@ -1,0 +1,10 @@
+.welcome-text-container {
+  width: 80%;
+  margin: 0.7em auto;
+}
+
+.welcome-text {
+  text-align: center;
+  font-size: 1.2em;
+  letter-spacing: 0.1em;
+}
