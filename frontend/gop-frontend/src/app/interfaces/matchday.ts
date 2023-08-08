@@ -6,5 +6,6 @@ export interface Matchday {
   matchdayNumber: number,
   season: Season,
   startTime: Date,
+  isFinished: boolean,
   fixtures?: Fixture[]
 }
