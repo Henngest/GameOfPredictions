@@ -31,7 +31,7 @@ class MatchdayServiceImpl(
         val season = seasonRepository.findByIdOrNull(seasonId)
             ?: throw SeasonDoesNotExistException("Season with id [$seasonId] does not exist.")
 
-        return matchdayRepository.findAllBySeason(season)
+        return matchdayRepository.findAllBySeasonOrderByMatchdayNumber(season)
     }
 
     override fun getByIdAndSeason(matchdayId: Long, seasonId: Long): Matchday {
