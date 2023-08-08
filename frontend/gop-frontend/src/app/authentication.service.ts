@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpErrorResponse} from "@angular/common/http";
-import {BehaviorSubject, catchError, map, Observable, of, throwError} from "rxjs";
+import {HttpClient} from "@angular/common/http";
+import {BehaviorSubject, catchError, map, Observable, throwError} from "rxjs";
 import {Jwt} from "./interfaces/jwt";
 import {JwtHelperService} from "@auth0/angular-jwt";
 
@@ -83,5 +83,18 @@ export class AuthenticationService {
     return undefined;
   }
 
+  isUserAuthenticated(): boolean {
+    const token = this.getToken();
+    return token != null;
+  }
+
+  isUserAdmin(): boolean {
+    const roles = this.getRoles();
+    if (roles && roles.some(r => r == "ROLE_ADMIN")) {
+      return true;
+    }
+
+    return false;
+  }
 
 }
