@@ -12,12 +12,12 @@
 </div>
 
 
-<h1>Competitions</h1>
+<h1 class="competition-heading">Competitions</h1>
 
 <ul>
-  <li *ngFor="let c of competitions">
-    <fa-icon [icon]="faFutbol"></fa-icon>
+  <li class="competition" *ngFor="let c of competitions">
     <a routerLink="/competitions/{{c.id}}">
+      <fa-icon [icon]="faFutbol"></fa-icon>
       {{ c.name }}
     </a>
   </li>
