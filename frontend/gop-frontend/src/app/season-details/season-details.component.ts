@@ -5,7 +5,7 @@ import {ActivatedRoute} from "@angular/router";
 import {filter, forkJoin, map, mergeMap} from "rxjs";
 import {Competition} from "../interfaces/competition";
 import {CompetitionsService} from "../competitions.service";
-import {faSpinner} from '@fortawesome/free-solid-svg-icons';
+import {faArrowDown, faArrowRight, faSpinner} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-season-details',
@@ -19,6 +19,8 @@ export class SeasonDetailsComponent {
   seasonId: string | undefined;
   loading: boolean = true;
   faSpinner = faSpinner;
+  faRightArrow = faArrowRight;
+  faDownArrow = faArrowDown;
   showAllMatchdays = false;
 
   constructor(private seasonService: SeasonsService,
@@ -50,7 +52,7 @@ export class SeasonDetailsComponent {
   }
 
   onShowMatchdaysClick() {
-    this.showAllMatchdays = true;
+    this.showAllMatchdays = !this.showAllMatchdays;
   }
 
 }

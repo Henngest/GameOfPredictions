@@ -3,7 +3,11 @@
 <div *ngIf="competition">
   <h3>{{ competition.name }}</h3>
   <p>{{ competition.shortHistory }}</p>
-  <a (click)="onShowAllSeasonsClick()">Show all seasons</a>
+  <a (click)="onShowAllSeasonsClick()">
+    Show all seasons <span *ngIf="!showAllSeasons"><fa-icon [icon]="faRightArrow"></fa-icon></span>
+    <span *ngIf="showAllSeasons"><fa-icon [icon]="faDownArrow"></fa-icon></span>
+  </a>
+
   <app-seasons
     *ngIf="showAllSeasons"
     [competitionId]="competition.id"
