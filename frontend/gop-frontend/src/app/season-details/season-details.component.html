@@ -1,7 +1,8 @@
 <div *ngIf="season && competition">
   <h1>Season {{season?.name}} of {{competition?.name}}</h1>
   <a (click)="onShowMatchdaysClick()">
-    Show matchdays
+    Show matchdays <span *ngIf="!showAllMatchdays"><fa-icon [icon]="faRightArrow"></fa-icon></span>
+    <span *ngIf="showAllMatchdays"><fa-icon [icon]="faDownArrow"></fa-icon></span>
   </a>
   <app-matchdays
     *ngIf="showAllMatchdays"
