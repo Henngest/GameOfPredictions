@@ -4,6 +4,7 @@ import {faSpinner} from '@fortawesome/free-solid-svg-icons';
 import {Matchday} from "../interfaces/matchday";
 import {MatchdayService} from "../matchday.service";
 import {DatePipe} from "@angular/common";
+import {AuthenticationService} from "../authentication.service";
 
 @Component({
   selector: 'app-matchdays',
@@ -19,7 +20,8 @@ export class MatchdaysComponent implements OnChanges {
   loading: boolean = true;
   faSpinner = faSpinner;
 
-  constructor(private matchdayService: MatchdayService) {
+  constructor(private matchdayService: MatchdayService,
+              public authenticationService: AuthenticationService) {
   }
 
   ngOnChanges(changes: SimpleChanges): void {

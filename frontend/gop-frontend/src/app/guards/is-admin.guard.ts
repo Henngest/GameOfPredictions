@@ -17,8 +17,6 @@ class AdminGuard {
 
     const userRoles = this.authenticationService.getRoles() || [];
 
-    console.log(userRoles);
-
     const hasRequiredRoles = requiredRoles.some((role) => userRoles.includes(role));
 
     if (!hasRequiredRoles) {
