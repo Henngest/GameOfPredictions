@@ -101,4 +101,8 @@ export class MakePredictionsComponent implements OnInit {
     }
   }
 
+  hasUserMadePredictions() {
+    return this.predictions?.some(p => p.predictedOutcome);
+  }
+
 }

@@ -46,7 +46,6 @@
         (click)="onPredictionChange(fixture.id, outcome.HOME_TEAM_WIN)"
         class="td-prediction"
         [ngClass]="{ 'selected': isPredictionSelected(fixture.id, outcome.HOME_TEAM_WIN) }"
-
       >
         {{ fixture.homeTeamWinCoefficient | number:'1.2-2' }}
       </td>
@@ -67,8 +66,8 @@
     </tr>
     </tbody>
   </table>
-
-  <p>{{errorMessage}}</p>
+  <p *ngIf="!hasUserMadePredictions() && matchday.isFinished">You haven't submitted any predictions for this matchday.</p>
+  <p *ngIf="errorMessage">{{errorMessage}}</p>
   <button
     *ngIf="!hasMatchdayStarted()"
     (click)="onSubmit()"
