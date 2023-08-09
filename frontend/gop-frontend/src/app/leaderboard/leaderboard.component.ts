@@ -30,7 +30,7 @@ export class LeaderboardComponent implements OnInit {
     this.route.queryParamMap.pipe(
       mergeMap(params => {
         const page = params.has('page') ? +params.get('page')!! : 0;
-        const size = params.has('size') ? +params.get('size')!! : 3;
+        const size = params.has('size') ? +params.get('size')!! : 10;
 
         return this.leaderboardService.getUsersSortedByRating(page, size);
       })

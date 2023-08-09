@@ -3,4 +3,8 @@
   border-radius: 10px;
   padding: 4px;
   margin: 2px;
+  font-size: 20px;
+}
+p, a {
+  font-size: 20px;
 }

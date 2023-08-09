@@ -25,6 +25,7 @@ th {
 
 td {
   text-align: center;
+  border-bottom: 1px gray solid;
 }
 
 .table-header > :nth-child(1),
@@ -34,4 +35,9 @@ td {
 
 .trophy {
   color: #FFD700;
+}
+
+table {
+  border-collapse: collapse;
+  font-size: 20px;
 }

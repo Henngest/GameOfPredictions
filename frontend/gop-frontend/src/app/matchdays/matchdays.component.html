@@ -9,7 +9,7 @@
   </a>
   <ul *ngIf="matchdays">
     <li class="matchday-list-item" *ngFor="let m of matchdays">
-      <a routerLink="/competitions/{{season.competition.id}}/seasons/{{season.id}}/matchdays/{{m.id}}">
+      <a class="matchday-link" routerLink="/competitions/{{season.competition.id}}/seasons/{{season.id}}/matchdays/{{m.id}}">
         Matchday #{{ m.matchdayNumber }}
       </a>
       (Starts {{m.startTime | date: 'MM-dd-yyyy HH:mm' }})
