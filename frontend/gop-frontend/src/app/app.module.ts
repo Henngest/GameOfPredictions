@@ -23,6 +23,8 @@ import { LeaderboardComponent } from './leaderboard/leaderboard.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import {ResponseErrorInterceptor} from "./interceptors/response-error-interceptor";
+import { ErrorComponent } from './error/error.component';
 
 
 export function jwtOptionsFactory() {
@@ -54,6 +56,7 @@ export function jwtOptionsFactory() {
     UserProfileComponent,
     EditProfileComponent,
     SidebarComponent,
+    ErrorComponent,
   ],
   imports: [
     BrowserModule,
@@ -70,6 +73,7 @@ export function jwtOptionsFactory() {
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ResponseErrorInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]
 })

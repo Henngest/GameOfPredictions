@@ -1,0 +1,21 @@
+:host {
+  margin: 5em auto;
+}
+
+.error-container {
+  text-align: center;
+  font-size: 1.8em;
+}
+
+button {
+  background-color: #eeeeee;
+  font-size: 0.6em;
+  border: 0;
+  border-radius: 10px;
+  padding: 2%;
+}
+
+button:hover {
+  cursor: pointer;
+  color: var(--light-blue);
+}

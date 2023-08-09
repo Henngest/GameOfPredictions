@@ -15,6 +15,7 @@ import {EditProfileComponent} from "./edit-profile/edit-profile.component";
 import {LeaderboardComponent} from "./leaderboard/leaderboard.component";
 import {IsAdminGuard} from "./guards/is-admin.guard";
 import {IsAuthenticatedGuard} from "./guards/is-authenticated.guard";
+import {ErrorComponent} from "./error/error.component";
 
 const routes: Routes = [
   {path: 'competitions', component: CompetitionsComponent},
@@ -30,7 +31,8 @@ const routes: Routes = [
   {path: 'competitions/:competitionId/seasons/:seasonId/matchdays/:id/importResults', component: ImportMatchdayResultsComponent, canActivate: [IsAdminGuard], data: { requiredRoles: ['ROLE_ADMIN'] }},
   {path: 'profile', component: UserProfileComponent, canActivate: [IsAuthenticatedGuard]},
   {path: 'profile/edit', component: EditProfileComponent, canActivate: [IsAuthenticatedGuard]},
-  {path: 'leaderboard', component: LeaderboardComponent}
+  {path: 'leaderboard', component: LeaderboardComponent},
+  {path: 'error', component: ErrorComponent},
 ];
 
 @NgModule({
