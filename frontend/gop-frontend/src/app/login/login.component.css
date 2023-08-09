@@ -71,7 +71,6 @@
   background-color: #0056b3;
 }
 
-/* Style the "Sign up" link */
 .login-container a {
   color: var(--light-blue);
   text-decoration: none;
@@ -79,4 +78,8 @@
 
 .login-container a:hover {
   text-decoration: underline;
+}
+
+.error {
+  color: #ff6b6b;
 }
