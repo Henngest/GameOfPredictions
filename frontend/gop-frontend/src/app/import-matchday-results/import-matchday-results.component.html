@@ -8,6 +8,8 @@
 <span>Werder Bremen,Darmstadt,1,0</span><br><br>
 <form (ngSubmit)="onFormSubmit($event)">
   <input type="file" name="fileInput" (change)="onFileSelected($event)"/>
-  <button type="submit" (click)="onFormSubmit($event)">Upload</button>
-  <span *ngIf="errorMessage">{{errorMessage}}</span>
+  <div class="submit-button">
+    <button type="submit" (click)="onFormSubmit($event)">Upload</button>
+    <span *ngIf="errorMessage">{{errorMessage}}</span>
+  </div>
 </form>
