@@ -4,7 +4,7 @@ import {LeaderboardService} from "../leaderboard.service";
 import {ActivatedRoute} from "@angular/router";
 import {mergeMap} from "rxjs";
 import {DecimalPipe} from "@angular/common";
-import {faSpinner} from '@fortawesome/free-solid-svg-icons';
+import {faSpinner, faTrophy} from '@fortawesome/free-solid-svg-icons';
 import {countryList} from "../CountryList";
 
 
@@ -19,6 +19,7 @@ export class LeaderboardComponent implements OnInit {
   page: Page | undefined;
   loading: boolean = true;
   faSpinner = faSpinner;
+  faTrophy = faTrophy;
   countryList = countryList;
 
   constructor(private leaderboardService: LeaderboardService,

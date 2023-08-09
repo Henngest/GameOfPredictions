@@ -71,7 +71,8 @@ table tr td:last-child {
   text-align: left;
 }
 
-.import-button {
+.import-button,
+.prediction-button{
   background-color: #eeeeee;
   border-radius: 10px;
   padding: 4px;

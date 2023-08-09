@@ -1,11 +1,9 @@
-/* Reset some default styles */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* Style the register container */
 .register-container {
   max-width: 400px;
   margin: 50px;
@@ -15,13 +13,11 @@
   background-color: #eeeeee;
 }
 
-/* Style the form heading */
 .register-container h2 {
   font-size: 24px;
   margin-bottom: 10px;
 }
 
-/* Style the form elements */
 .register-container label {
   display: block;
   margin-bottom: 5px;
@@ -38,13 +34,11 @@
   border-radius: 3px;
 }
 
-/* Highlight invalid input fields */
 .register-container input:invalid,
 .register-container select:invalid {
   border-color: #ff6b6b;
 }
 
-/* Style error messages */
 .register-container div.error-message {
   font-size: 14px;
   color: #ff6b6b;
@@ -61,7 +55,6 @@
   opacity: 1;
 }
 
-/* Style the register button */
 .register-container button[type="submit"] {
   background-color: var(--light-blue);
   color: white;
@@ -76,7 +69,6 @@
   background-color: #0056b3;
 }
 
-/* Style the "Log in" link */
 .register-container a {
   color: var(--light-blue);
   text-decoration: none;

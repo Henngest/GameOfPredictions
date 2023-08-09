@@ -10,7 +10,28 @@
   justify-content: space-around;
 }
 
+.page-links > * {
+  margin-right: 10px;
+}
+
 p {
   margin: 0;
   padding: 0;
+}
+
+th {
+  width: 300px;
+}
+
+td {
+  text-align: center;
+}
+
+.table-header > :nth-child(1),
+.table-header > :nth-child(3){
+  width: 50px;
+}
+
+fa-icon {
+  color: #FFD700;
 }

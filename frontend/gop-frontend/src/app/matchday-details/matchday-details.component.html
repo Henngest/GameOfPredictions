@@ -40,7 +40,7 @@
     </tr>
     </tbody>
   </table>
-  <a class="import-button" routerLink="/competitions/{{competition?.id}}/seasons/{{season?.id}}/matchdays/{{matchday.id}}/predict">
+  <a class="prediction-button" routerLink="/competitions/{{competition?.id}}/seasons/{{season?.id}}/matchdays/{{matchday.id}}/predict">
     {{ hasMatchdayStarted() ? 'See predictions' : 'Make predictions' }}
   </a>
   <a class="import-button" routerLink="/competitions/{{competition?.id}}/seasons/{{season?.id}}/matchdays/{{matchday.id}}/importResults">Import results</a>

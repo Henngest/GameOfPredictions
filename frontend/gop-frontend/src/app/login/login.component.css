@@ -1,11 +1,9 @@
-/* Reset some default styles */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* Style the login container */
 .login-container {
   max-width: 400px;
   margin: 50px;
@@ -15,13 +13,11 @@
   background-color: #eeeeee;
 }
 
-/* Style the form heading */
 .login-container h2 {
   font-size: 24px;
   margin-bottom: 10px;
 }
 
-/* Style the form elements */
 .login-container label {
   display: block;
   margin-bottom: 5px;
@@ -36,12 +32,10 @@
   border-radius: 3px;
 }
 
-/* Highlight invalid input fields */
 .input-field:invalid {
   border-color: #ff6b6b;
 }
 
-/* Style error messages */
 .login-container div.error-message {
   font-size: 14px;
   color: #ff6b6b;
@@ -56,7 +50,6 @@
   margin-top: 1px;
 }
 
-/* Style the login button */
 .login-container button[type="submit"] {
   background-color: var(--light-blue);
   color: white;
@@ -71,7 +64,6 @@
   background-color: #0056b3;
 }
 
-/* Style the "Sign up" link */
 .login-container a {
   color: var(--light-blue);
   text-decoration: none;

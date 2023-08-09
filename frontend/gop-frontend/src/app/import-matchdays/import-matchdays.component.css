@@ -1,0 +1,22 @@
+.submit-button {
+  margin-top: 5px;
+}
+
+.submit-button > span {
+  color: #ff6b6b;
+  margin-left: 3px;
+}
+
+button {
+  background-color: #eeeeee;
+  border-radius: 10px;
+  padding: 8px;
+  margin: 2px;
+  border: none;
+  color: var(--dark-blue);
+}
+
+button:hover {
+  cursor: pointer;
+  color: var(--light-blue);
+}
