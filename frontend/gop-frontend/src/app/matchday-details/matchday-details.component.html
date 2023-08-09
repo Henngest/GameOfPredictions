@@ -2,7 +2,10 @@
   <h1>
     Matchday {{matchday.matchdayNumber}} of {{competition?.name}} {{season?.name}} season
   </h1>
-  <h3>Fixtures</h3>
+  <div class="d-flex justify-content-between">
+    <h3>Fixtures</h3>
+    <p *ngIf="hasMatchdayStarted()"><em>Matchday started at: {{matchday.startTime| date: 'MM-dd-yyyy HH:mm'}}</em></p>
+  </div>
   <table>
     <thead class="table-head">
     <tr>
@@ -40,10 +43,17 @@
     </tr>
     </tbody>
   </table>
-  <a class="prediction-button" routerLink="/competitions/{{competition?.id}}/seasons/{{season?.id}}/matchdays/{{matchday.id}}/predict">
+  <a
+    *ngIf="authenticationService.isUserAuthenticated()"
+    class="prediction-button"
+    routerLink="/competitions/{{competition?.id}}/seasons/{{season?.id}}/matchdays/{{matchday.id}}/predict">
     {{ hasMatchdayStarted() ? 'See predictions' : 'Make predictions' }}
   </a>
-  <a class="import-button" routerLink="/competitions/{{competition?.id}}/seasons/{{season?.id}}/matchdays/{{matchday.id}}/importResults">Import results</a>
+  <a
+    *ngIf="authenticationService.isUserAdmin() && !matchday.isFinished"
+    class="import-button"
+    routerLink="/competitions/{{competition?.id}}/seasons/{{season?.id}}/matchdays/{{matchday.id}}/importResults"
+  >Import results</a>
 </div>
 <div *ngIf="loading">
   <fa-icon [icon]="faSpinner"></fa-icon>

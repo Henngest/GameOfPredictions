@@ -8,6 +8,7 @@ import {faSpinner} from '@fortawesome/free-solid-svg-icons';
 import {Matchday} from "../interfaces/matchday";
 import {MatchdayService} from "../matchday.service";
 import {DatePipe, DecimalPipe} from "@angular/common";
+import {AuthenticationService} from "../authentication.service";
 
 @Component({
   selector: 'app-matchday-details',
@@ -24,7 +25,8 @@ export class MatchdayDetailsComponent implements OnInit {
 
   constructor(private matchdayService: MatchdayService,
               private seasonsService: SeasonsService,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              public authenticationService: AuthenticationService) {
   }
 
   ngOnInit(): void {
