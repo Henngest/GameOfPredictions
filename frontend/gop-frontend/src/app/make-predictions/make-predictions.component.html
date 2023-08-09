@@ -2,7 +2,7 @@
   <h1>
     Matchday {{matchday.matchdayNumber}} of {{competition?.name}} {{season?.name}} season
   </h1>
-  <div class="d-flex justify-content-between">
+  <div class="d-flex justify-content-between fixture-header">
     <h3>Fixtures</h3>
     <p *ngIf="!hasMatchdayStarted()"><em>Predictions close at: {{matchday.startTime| date: 'MM-dd-yyyy HH:mm'}}</em></p>
     <p *ngIf="hasMatchdayStarted()"><em>Predictions closed at: {{matchday.startTime| date: 'MM-dd-yyyy HH:mm'}}</em></p>
@@ -47,21 +47,27 @@
         class="td-prediction"
         [ngClass]="{ 'selected': isPredictionSelected(fixture.id, outcome.HOME_TEAM_WIN) }"
       >
+        <span class="prediction-text">
         {{ fixture.homeTeamWinCoefficient | number:'1.2-2' }}
+        </span>
       </td>
       <td
         (click)="onPredictionChange(fixture.id, outcome.DRAW)"
         class="td-prediction"
         [ngClass]="{ 'selected': isPredictionSelected(fixture.id, outcome.DRAW) }"
       >
+        <span class="prediction-text">
         {{ fixture.drawCoefficient | number:'1.2-2' }}
+        </span>
       </td>
       <td
         (click)="onPredictionChange(fixture.id, outcome.AWAY_TEAM_WIN)"
         class="td-prediction"
         [ngClass]="{ 'selected': isPredictionSelected(fixture.id, outcome.AWAY_TEAM_WIN) }"
       >
+        <span class="prediction-text">
         {{ fixture.awayTeamWinCoefficient | number:'1.2-2' }}
+        </span>
       </td>
     </tr>
     </tbody>

@@ -2,7 +2,7 @@
   <h1>
     Matchday {{matchday.matchdayNumber}} of {{competition?.name}} {{season?.name}} season
   </h1>
-  <div class="d-flex justify-content-between">
+  <div class="d-flex justify-content-between fixture-header">
     <h3>Fixtures</h3>
     <p *ngIf="hasMatchdayStarted()"><em>Matchday started at: {{matchday.startTime| date: 'MM-dd-yyyy HH:mm'}}</em></p>
     <p *ngIf="!hasMatchdayStarted()"><em>Matchday starts at: {{matchday.startTime| date: 'MM-dd-yyyy HH:mm'}}</em></p>
