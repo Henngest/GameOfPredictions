@@ -19,13 +19,23 @@
     <tbody>
     <tr *ngFor="let fixture of matchday.fixtures">
       <td>
-        <div class="d-flex fixture-team">
-          <img src="{{ fixture.homeTeam.logo }}" alt="{{ fixture.homeTeam.name }}" class="fixture-img"/>
-          <p class="fixture-team-name">{{ fixture.homeTeam.name }}</p>
+        <div class="d-flex fixture-team justify-content-between">
+          <div class="d-flex">
+            <img src="{{ fixture.homeTeam.logo }}" alt="{{ fixture.homeTeam.name }}" class="fixture-img"/>
+            <p class="fixture-team-name">{{ fixture.homeTeam.name }}</p>
+          </div>
+          <div *ngIf="matchday.isFinished">
+            <p>{{fixture.homeTeamGoals}}</p>
+          </div>
         </div>
-        <div class="d-flex fixture-team">
-          <img src="{{ fixture.awayTeam.logo }}" alt="{{ fixture.awayTeam.name }}" class="fixture-img"/>
-          <p class="fixture-team-name">{{ fixture.awayTeam.name }}</p>
+        <div class="d-flex fixture-team justify-content-between">
+          <div class="d-flex">
+            <img src="{{ fixture.awayTeam.logo }}" alt="{{ fixture.awayTeam.name }}" class="fixture-img"/>
+            <p class="fixture-team-name">{{ fixture.awayTeam.name }}</p>
+          </div>
+          <div *ngIf="matchday.isFinished">
+            <p>{{fixture.awayTeamGoals}}</p>
+          </div>
         </div>
       </td>
       <td>
