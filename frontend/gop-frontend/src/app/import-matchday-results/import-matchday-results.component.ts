@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
-import {ImportMatchdaysService} from "../import-matchdays.service";
 import {ActivatedRoute} from "@angular/router";
 import {ImportMatchdayResultsService} from "../import-matchday-results.service";
+import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-import-matchday-results',
@@ -12,9 +12,12 @@ export class ImportMatchdayResultsComponent {
 
   seasonId: string | undefined;
   matchdayId: string | undefined;
+  selectedFile: File | null = null;
+  errorMessage = '';
 
   constructor(private importMatchdayResultsService: ImportMatchdayResultsService,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              private location: Location) {
   }
 
   ngOnInit() {
@@ -25,9 +28,20 @@ export class ImportMatchdayResultsComponent {
     )
   }
 
+  onFormSubmit(event: Event) {
+    event.preventDefault();
+    if (this.selectedFile) {
+      this.importMatchdayResultsService.importMatchdayResults(+this.seasonId!!, +this.matchdayId!!, this.selectedFile)
+        .subscribe(_ => {
+          this.location.back();
+        });
+    } else {
+      this.errorMessage = "You must select a file before submitting!";
+    }
+  }
+
   // TODO: Create a button with onSubmit event for importing results, not like this!
   onFileSelected(event: any) {
-    const file = event.target.files[0];
-    this.importMatchdayResultsService.importMatchdayResults(+this.seasonId!!, +this.matchdayId!!, file).subscribe()
+    this.selectedFile = event.target.files[0];
   }
 }
