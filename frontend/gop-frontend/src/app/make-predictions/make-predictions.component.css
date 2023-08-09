@@ -20,6 +20,7 @@
   width: auto;
   height: auto;
   flex: 1 1 auto;
+  object-fit: contain;
 }
 
 .fixture-team-name {
@@ -103,3 +104,6 @@ table tr td:last-child {
   margin: 2px;
 }
 
+.fixture-logo-team {
+  width: 90%;
+}

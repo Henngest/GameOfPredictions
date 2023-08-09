@@ -17,9 +17,8 @@
 .fixture-img {
   max-width: 50px;
   max-height: 50px;
-  width: auto;
-  height: auto;
   flex: 1 1 auto;
+  object-fit: contain;
 }
 
 .fixture-team-name {
@@ -96,4 +95,8 @@ table tr td:last-child {
   border-radius: 10px;
   padding: 4px;
   margin: 2px;
+}
+
+.fixture-logo-team {
+  width: 90%;
 }
