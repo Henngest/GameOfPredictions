@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
-import {ImportMatchdaysService} from "../import-matchdays.service";
 import {ActivatedRoute} from "@angular/router";
 import {Location} from "@angular/common";
+import {MatchdayService} from "../matchday.service";
 
 @Component({
   selector: 'app-import-matchdays',
@@ -14,7 +14,7 @@ export class ImportMatchdaysComponent {
   selectedFile: File | null = null;
   errorMessage = '';
 
-  constructor(private importMatchdaysService: ImportMatchdaysService,
+  constructor(private matchdayService: MatchdayService,
               private route: ActivatedRoute,
               private location: Location) {
   }
@@ -28,7 +28,7 @@ export class ImportMatchdaysComponent {
   onFormSubmit(event: Event) {
     event.preventDefault();
     if (this.selectedFile) {
-      this.importMatchdaysService.importMatchdays(+this.seasonId!!, this.selectedFile)
+      this.matchdayService.importMatchdays(+this.seasonId!!, this.selectedFile)
         .subscribe(_ => {
           this.location.back();
         });
