@@ -106,3 +106,21 @@ table tr td:last-child {
 .fixture-logo-team {
   width: 90%;
 }
+
+.submit-button {
+  background-color: #eeeeee;
+  border-radius: 10px;
+  padding: 4px;
+  margin: 2px;
+  font-size: 20px;
+  border: 0;
+}
+
+.submit-button:hover {
+  color: var(--light-blue);
+  cursor: pointer;
+}
+
+.error-message {
+  color: #ff6b6b;
+}

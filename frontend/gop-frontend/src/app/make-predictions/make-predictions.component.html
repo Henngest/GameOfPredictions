@@ -78,12 +78,12 @@
     </tr>
     </tbody>
   </table>
-  <p *ngIf="!hasUserMadePredictions() && matchday.isFinished">You haven't submitted any predictions for this
-    matchday.</p>
-  <p *ngIf="errorMessage">{{errorMessage}}</p>
+  <p *ngIf="!hasUserMadePredictions() && matchday.isFinished">You haven't submitted any predictions for this matchday.</p>
+  <p class="error-message" *ngIf="errorMessage">{{errorMessage}}</p>
   <button
     *ngIf="!hasMatchdayStarted() && !matchday.isFinished"
     (click)="onSubmit()"
+    class="submit-button"
   >
     Submit
   </button>
