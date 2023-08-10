@@ -20,8 +20,8 @@ data class Matchday(
     @JsonIgnore
     val season: Season,
     @OneToMany(
-        mappedBy = "matchday",
-        fetch = FetchType.LAZY
-    ) // TODO: Make changes so that Hibernate doesn't ignore fetch type LAZY (issue is related to data classes).
+        mappedBy = "matchday"
+    ) // Number of queries executed is limited due to the number of
+    // fixtures per matchday and number of matchdays per season
     val fixtures: List<Fixture>?
 )
