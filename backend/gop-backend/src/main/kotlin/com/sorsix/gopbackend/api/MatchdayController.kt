@@ -12,23 +12,47 @@ class MatchdayController(val matchdayService: MatchdayService) {
 
     @GetMapping
     fun getAllMatchdays(@PathVariable seasonId: Long): List<Matchday> =
-            matchdayService.getAllBySeason(seasonId)
+        matchdayService.getAllBySeason(seasonId)
 
     @GetMapping("/{id}")
     fun getMatchdayById(@PathVariable seasonId: Long, @PathVariable id: Long): ResponseEntity<*> =
-            matchdayService.getByIdAndSeason(id, seasonId)
-                    .let { ResponseEntity.ok(it) }
+        matchdayService.getByIdAndSeason(id, seasonId)
+            .let { ResponseEntity.ok(it) }
 
-    // TODO Check if the uploaded file extension: .pdf, .csv, .txt etc.
     @PostMapping("/import")
-    fun importMatchdaysFromFile(@PathVariable seasonId: Long, @RequestParam file: MultipartFile) {
-        this.matchdayService.importMatchdaysFromFile(seasonId, file.inputStream)
+    fun importMatchdaysFromFile(
+        @PathVariable seasonId: Long,
+        @RequestParam file: MultipartFile
+    ): ResponseEntity<*> {
+        return if (!isFileTypeSupported(file)) {
+            ResponseEntity.badRequest().body(mapOf("error" to "Unsupported content type! Extensions must be .csv .txt or .docx"))
+        } else {
+            this.matchdayService.importMatchdaysFromFile(seasonId, file.inputStream)
+            ResponseEntity.ok().body("")
+        }
     }
 
     @PostMapping("/{id}/importResults")
-    fun importMatchdayResultsFromFile(@PathVariable seasonId: Long,
-                                      @PathVariable id: Long,
-                                      @RequestParam file: MultipartFile) {
-        this.matchdayService.importMatchdayResultsFromFile(id, file.inputStream)
+    fun importMatchdayResultsFromFile(
+        @PathVariable seasonId: Long,
+        @PathVariable id: Long,
+        @RequestParam file: MultipartFile
+    ): ResponseEntity<*> {
+        return if (!isFileTypeSupported(file)) {
+            ResponseEntity.badRequest().body(mapOf("error" to "Unsupported content type! Extensions must be .csv .txt or .docx"))
+        } else {
+            this.matchdayService.importMatchdayResultsFromFile(id, file.inputStream)
+            ResponseEntity.ok().body("")
+        }
+    }
+
+    private fun isFileTypeSupported(file: MultipartFile): Boolean {
+        val supportedMediaTypes = setOf(
+            "text/plain",
+            "text/csv",
+            "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+        )
+
+        return file.contentType in supportedMediaTypes
     }
 }
