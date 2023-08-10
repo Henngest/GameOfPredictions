@@ -22,7 +22,7 @@ const routes: Routes = [
   {path: '', redirectTo: '/competitions', pathMatch: 'full'},
   {path: 'competitions/:id', component: CompetitionDetailsComponent},
   {path: 'competitions/:competitionId/seasons/:id', component: SeasonDetailsComponent},
-  {path: 'competitions/:competitionId/seasons/:seasonId/matchdays', component: MatchdaysComponent},
+  // {path: 'competitions/:competitionId/seasons/:seasonId/matchdays', component: MatchdaysComponent},
   {path: 'competitions/:competitionId/seasons/:seasonId/matchdays/import', component: ImportMatchdaysComponent, canActivate: [IsAdminGuard], data: { requiredRoles: ['ROLE_ADMIN'] }},
   {path: 'competitions/:competitionId/seasons/:seasonId/matchdays/:id', component: MatchdayDetailsComponent},
   {path: 'competitions/:competitionId/seasons/:seasonId/matchdays/:id/predict', component: MakePredictionsComponent},

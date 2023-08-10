@@ -44,8 +44,10 @@
       </td>
       <td
         (click)="onPredictionChange(fixture.id, outcome.HOME_TEAM_WIN)"
-        class="td-prediction"
-        [ngClass]="{ 'selected': isPredictionSelected(fixture.id, outcome.HOME_TEAM_WIN) }"
+        [ngClass]="{
+          'td-prediction': !hasMatchdayStarted() && !matchday.isFinished,
+          'selected': isPredictionSelected(fixture.id, outcome.HOME_TEAM_WIN)
+        }"
       >
         <span class="prediction-text">
         {{ fixture.homeTeamWinCoefficient | number:'1.2-2' }}
@@ -53,8 +55,10 @@
       </td>
       <td
         (click)="onPredictionChange(fixture.id, outcome.DRAW)"
-        class="td-prediction"
-        [ngClass]="{ 'selected': isPredictionSelected(fixture.id, outcome.DRAW) }"
+        [ngClass]="{
+          'td-prediction': !hasMatchdayStarted() && !matchday.isFinished,
+          'selected': isPredictionSelected(fixture.id, outcome.DRAW)
+        }"
       >
         <span class="prediction-text">
         {{ fixture.drawCoefficient | number:'1.2-2' }}
@@ -62,8 +66,10 @@
       </td>
       <td
         (click)="onPredictionChange(fixture.id, outcome.AWAY_TEAM_WIN)"
-        class="td-prediction"
-        [ngClass]="{ 'selected': isPredictionSelected(fixture.id, outcome.AWAY_TEAM_WIN) }"
+        [ngClass]="{
+          'td-prediction': !hasMatchdayStarted() && !matchday.isFinished,
+          'selected': isPredictionSelected(fixture.id, outcome.AWAY_TEAM_WIN)
+        }"
       >
         <span class="prediction-text">
         {{ fixture.awayTeamWinCoefficient | number:'1.2-2' }}
@@ -72,10 +78,11 @@
     </tr>
     </tbody>
   </table>
-  <p *ngIf="!hasUserMadePredictions() && matchday.isFinished">You haven't submitted any predictions for this matchday.</p>
+  <p *ngIf="!hasUserMadePredictions() && matchday.isFinished">You haven't submitted any predictions for this
+    matchday.</p>
   <p *ngIf="errorMessage">{{errorMessage}}</p>
   <button
-    *ngIf="!hasMatchdayStarted()"
+    *ngIf="!hasMatchdayStarted() && !matchday.isFinished"
     (click)="onSubmit()"
   >
     Submit

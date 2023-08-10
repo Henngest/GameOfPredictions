@@ -76,7 +76,7 @@ export class MakePredictionsComponent implements OnInit {
   }
 
   onPredictionChange(fixtureId: number, selectedOutcome: Outcome): void {
-    if (this.hasMatchdayStarted()) {
+    if (this.hasMatchdayStarted() || this.matchday?.isFinished) {
       return;
     }
     this.predictions = this.predictions?.map(prediction => {
@@ -96,7 +96,7 @@ export class MakePredictionsComponent implements OnInit {
       this.errorMessage = "Please make a prediction for all fixtures."
     } else {
       this.predictionsService.submitPredictions(this.predictions).subscribe(value => {
-        this.router.navigateByUrl(`competitions/${this.competition?.id}/seasons/${this.season?.id}/matchdays`);
+        this.router.navigateByUrl(`competitions/${this.competition?.id}/seasons/${this.season?.id}`);
       })
     }
   }
