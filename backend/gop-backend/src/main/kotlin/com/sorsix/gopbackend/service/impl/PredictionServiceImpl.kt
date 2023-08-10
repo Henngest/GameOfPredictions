@@ -7,12 +7,12 @@ import com.sorsix.gopbackend.model.enumerations.Outcome
 import com.sorsix.gopbackend.model.exceptions.FixtureDoesNotExistException
 import com.sorsix.gopbackend.model.exceptions.UserDoesNotExistException
 import com.sorsix.gopbackend.repository.FixtureRepository
-import com.sorsix.gopbackend.repository.MatchdayRepository
 import com.sorsix.gopbackend.repository.PredictionRepository
 import com.sorsix.gopbackend.repository.UserRepository
 import com.sorsix.gopbackend.service.PredictionService
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
+import kotlin.math.abs
 
 @Service
 class PredictionServiceImpl(
@@ -46,10 +46,10 @@ class PredictionServiceImpl(
         coefficient: Double
     ): Boolean {
         return if (predictedOutcome == fixtureOutcome) {
-            userPredicting.rating += coefficient * 5
+            userPredicting.rating += coefficient * (5 - 2 * abs(1 - coefficient))
             true
         } else {
-            userPredicting.rating -= coefficient * 3
+            userPredicting.rating -= coefficient * (3 + 2 * abs(1 - coefficient))
             false
         }
     }
