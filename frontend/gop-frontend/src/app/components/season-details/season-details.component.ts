@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Season} from "../../interfaces/season";
 import {SeasonsService} from "../../services/seasons.service";
 import {ActivatedRoute} from "@angular/router";
@@ -12,7 +12,7 @@ import {faArrowDown, faArrowRight, faSpinner} from '@fortawesome/free-solid-svg-
   templateUrl: './season-details.component.html',
   styleUrls: ['./season-details.component.css']
 })
-export class SeasonDetailsComponent {
+export class SeasonDetailsComponent implements OnInit{
 
   season: Season | undefined;
   competition: Competition | undefined;
@@ -29,17 +29,18 @@ export class SeasonDetailsComponent {
   }
 
   ngOnInit(): void {
-    this.route.params.subscribe(
-      params => {
-        this.seasonId = params['id'];
-      }
-    )
     this.route.paramMap.pipe(
-      filter(params => params.has('competitionId')),
-      map(params => params.get('competitionId')!!),
+      filter(params => params.has('competitionId') && params.has('id')),
+      map(params => {
+        return {
+          competitionId: +params.get('competitionId')!!,
+          seasonId: +params.get('id')!!
+        }
+      }),
+      filter(({competitionId, seasonId}) => !isNaN(competitionId) && !isNaN(seasonId)),
       mergeMap(param => {
-        const seasonObs = this.seasonService.getById(+this.seasonId!!, +param); //TODO() Check if ids are a number
-        const competitionObs = this.competitionService.getById(+param);
+        const seasonObs = this.seasonService.getById(param.seasonId, param.competitionId); //TODO() Check if ids are a number
+        const competitionObs = this.competitionService.getById(param.competitionId);
         return forkJoin([seasonObs, competitionObs]);
       })
     ).subscribe(
