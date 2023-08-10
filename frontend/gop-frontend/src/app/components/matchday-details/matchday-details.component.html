@@ -58,7 +58,7 @@
     *ngIf="authenticationService.isUserAuthenticated()"
     class="prediction-button"
     routerLink="/competitions/{{competition?.id}}/seasons/{{season?.id}}/matchdays/{{matchday.id}}/predict">
-    {{ hasMatchdayStarted() ? 'See predictions' : 'Make predictions' }}
+    {{ hasMatchdayStarted() || matchday.isFinished ? 'See your predictions' : 'Make predictions' }}
   </a>
   <a
     *ngIf="authenticationService.isUserAdmin() && !matchday.isFinished"
