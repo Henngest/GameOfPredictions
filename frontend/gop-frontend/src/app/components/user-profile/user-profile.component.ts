@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {User} from "../../interfaces/user";
 import {UserProfileService} from "../../services/user-profile.service";
 import {AuthenticationService} from "../../services/authentication.service";
@@ -10,12 +10,13 @@ import {DecimalPipe} from "@angular/common";
   styleUrls: ['./user-profile.component.css'],
   providers: [DecimalPipe]
 })
-export class UserProfileComponent {
+export class UserProfileComponent implements OnInit {
   user: User | undefined;
 
   constructor(
     private userProfileService: UserProfileService,
-    private authService: AuthenticationService) { }
+    private authService: AuthenticationService) {
+  }
 
   ngOnInit() {
     const currentUser = this.authService.getUsername();

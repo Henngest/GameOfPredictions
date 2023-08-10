@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {Location} from "@angular/common";
 import {MatchdayService} from "../../services/matchday.service";
@@ -8,7 +8,7 @@ import {MatchdayService} from "../../services/matchday.service";
   templateUrl: './import-matchdays.component.html',
   styleUrls: ['./import-matchdays.component.css']
 })
-export class ImportMatchdaysComponent {
+export class ImportMatchdaysComponent implements OnInit {
 
   seasonId: string | undefined;
   selectedFile: File | null = null;

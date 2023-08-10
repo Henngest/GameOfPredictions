@@ -1,9 +1,8 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AbstractControlOptions, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {countryList} from "../../CountryList";
 import {AuthenticationService} from "../../services/authentication.service";
 import {UserProfileService} from "../../services/user-profile.service";
-import {User} from "../../interfaces/user";
 import {Router} from "@angular/router";
 
 
@@ -12,7 +11,7 @@ import {Router} from "@angular/router";
   templateUrl: './edit-profile.component.html',
   styleUrls: ['./edit-profile.component.css']
 })
-export class EditProfileComponent {
+export class EditProfileComponent implements OnInit {
   countryList = countryList;
   editForm: FormGroup = new FormGroup({});
 
@@ -33,7 +32,7 @@ export class EditProfileComponent {
   submit() {
     const currentUser = this.authService.getUsername();
     if (currentUser) {
-      this.userProfileService.editUserProfile(currentUser,this.editForm.get('country')?.value)
+      this.userProfileService.editUserProfile(currentUser, this.editForm.get('country')?.value)
         .subscribe(_ => this.router.navigateByUrl("/profile"));
     }
   }
