@@ -12,7 +12,7 @@ import {faArrowDown, faArrowRight, faSpinner} from '@fortawesome/free-solid-svg-
   templateUrl: './season-details.component.html',
   styleUrls: ['./season-details.component.css']
 })
-export class SeasonDetailsComponent implements OnInit{
+export class SeasonDetailsComponent implements OnInit {
 
   season: Season | undefined;
   competition: Competition | undefined;
@@ -39,7 +39,7 @@ export class SeasonDetailsComponent implements OnInit{
       }),
       filter(({competitionId, seasonId}) => !isNaN(competitionId) && !isNaN(seasonId)),
       mergeMap(param => {
-        const seasonObs = this.seasonService.getById(param.seasonId, param.competitionId); //TODO() Check if ids are a number
+        const seasonObs = this.seasonService.getById(param.seasonId, param.competitionId);
         const competitionObs = this.competitionService.getById(param.competitionId);
         return forkJoin([seasonObs, competitionObs]);
       })

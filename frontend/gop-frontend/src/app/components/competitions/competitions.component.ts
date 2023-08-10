@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {CompetitionsService} from "../../services/competitions.service";
 import {Competition} from "../../interfaces/competition";
-import { faFutbol } from '@fortawesome/free-solid-svg-icons';
-import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+import {faFutbol} from '@fortawesome/free-solid-svg-icons';
+import {faSpinner} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-competitions',

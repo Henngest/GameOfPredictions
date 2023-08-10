@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {countryList} from "../../CountryList";
 import {AbstractControlOptions, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AuthenticationService} from "../../services/authentication.service";
@@ -10,7 +10,7 @@ import {Errors} from "../../interfaces/errors";
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-export class RegisterComponent {
+export class RegisterComponent implements OnInit {
 
   countryList = countryList;
   registerForm: FormGroup = new FormGroup({});
@@ -40,19 +40,19 @@ export class RegisterComponent {
     if (this.registerForm.invalid || !this.passwordsMatch)
       return;
     this.authService.register(this.registerForm.get('username')?.value,
-                              this.registerForm.get('password')?.value,
-                              this.registerForm.get('confirmPassword')?.value,
-                              this.registerForm.get('country')?.value)
+      this.registerForm.get('password')?.value,
+      this.registerForm.get('confirmPassword')?.value,
+      this.registerForm.get('country')?.value)
       .subscribe({
-        next: (value) => {
-          if (value) {
-            this.router.navigateByUrl("/competitions");
+          next: (value) => {
+            if (value) {
+              this.router.navigateByUrl("/competitions");
+            }
+          },
+          error: (err) => {
+            this.errors = {errorMessages: err.error.errors};
           }
-        },
-        error: (err) => {
-          this.errors = {errorMessages: err.error.errors};
-        }}
-
+        }
       )
   }
 
