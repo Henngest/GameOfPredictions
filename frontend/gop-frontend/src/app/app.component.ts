@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import {filter, fromEvent, map} from "rxjs";
 
 @Component({
   selector: 'app-root',
