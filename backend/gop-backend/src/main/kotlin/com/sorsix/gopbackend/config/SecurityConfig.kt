@@ -24,8 +24,11 @@ class SecurityConfig(
             .authorizeHttpRequests { authorizeHttpRequests ->
                 authorizeHttpRequests
                     .requestMatchers("/api/predict").authenticated()
-                    .requestMatchers("/api/seasons/{seasonId}/matchdays/import",
-                        "/api/seasons/{seasonId}/matchdays/{id}/importResults").hasRole("ADMIN")
+                    .requestMatchers(
+                        "/api/seasons/{seasonId}/matchdays/import",
+                        "/api/seasons/{seasonId}/matchdays/{id}/importResults",
+                        "/api/matchdays/{matchdayId}/fixtures/edit/{id}"
+                    ).hasRole("ADMIN")
                     .anyRequest().permitAll()
             }
             .sessionManagement { sessionManagement ->
