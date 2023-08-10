@@ -12,7 +12,7 @@ data class User(
     @Id
     private val username: String,
     private val password: String,
-    var rating: Double = 0.0, //TODO() Make default value in database 0
+    var rating: Double = 0.0,
     @Enumerated(value = EnumType.STRING)
     val role: Role,
     var country: String

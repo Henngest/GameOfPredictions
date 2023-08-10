@@ -41,7 +41,7 @@ create table users
 (
     username text primary key,
     password text not null,
-    rating   real,
+    rating   real default 0.0,
     role     text not null,
     country  text not null
 );
