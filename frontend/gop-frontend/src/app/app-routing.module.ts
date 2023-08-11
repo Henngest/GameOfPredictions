@@ -32,7 +32,7 @@ const routes: Routes = [
   {path: 'profile/edit', component: EditProfileComponent, canActivate: [IsAuthenticatedGuard]},
   {path: 'leaderboard', component: LeaderboardComponent},
   {path: 'error', component: ErrorComponent},
-  {path: 'matchdays/:matchdayId/fixtures/edit/:id', component: EditFixtureComponent}
+  {path: 'matchdays/:matchdayId/fixtures/edit/:id', component: EditFixtureComponent, canActivate: [IsAdminGuard], data: { requiredRoles: ['ROLE_ADMIN'] }}
 ];
 
 @NgModule({
