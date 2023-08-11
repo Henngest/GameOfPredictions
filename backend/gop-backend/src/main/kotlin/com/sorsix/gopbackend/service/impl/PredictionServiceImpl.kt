@@ -44,10 +44,18 @@ class PredictionServiceImpl(
         coefficient: Double
     ): Boolean {
         return if (predictedOutcome == fixtureOutcome) {
-            userPredicting.rating += coefficient * (5 - 2 * abs(1 - coefficient))
+            this.userRepository.save(
+                userPredicting.copy(
+                    rating = userPredicting.rating + coefficient * (5 - 2 * abs(1 - coefficient))
+                )
+            )
             true
         } else {
-            userPredicting.rating -= coefficient * (3 + 2 * abs(1 - coefficient))
+            this.userRepository.save(
+                userPredicting.copy(
+                    rating = userPredicting.rating - coefficient * (3 + 2 * abs(1 - coefficient))
+                )
+            )
             false
         }
     }

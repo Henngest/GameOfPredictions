@@ -12,10 +12,10 @@ data class User(
     @Id
     private val username: String,
     private val password: String,
-    var rating: Double = 0.0,
+    val rating: Double = 0.0,
     @Enumerated(value = EnumType.STRING)
     val role: Role,
-    var country: String
+    val country: String
 ) : UserDetails {
 
     override fun getAuthorities(): MutableCollection<out GrantedAuthority> {
