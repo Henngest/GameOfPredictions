@@ -2,9 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {Season} from "../../interfaces/season";
 import {Competition} from "../../interfaces/competition";
 import {SeasonsService} from "../../services/seasons.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {forkJoin, switchMap} from "rxjs";
-import {faSpinner} from '@fortawesome/free-solid-svg-icons';
+import {faSpinner, faPenToSquare} from '@fortawesome/free-solid-svg-icons';
 import {Matchday} from "../../interfaces/matchday";
 import {MatchdayService} from "../../services/matchday.service";
 import {DatePipe, DecimalPipe} from "@angular/common";
@@ -22,11 +22,13 @@ export class MatchdayDetailsComponent implements OnInit {
   competition: Competition | undefined;
   loading: boolean = true;
   faSpinner = faSpinner;
+  faPenToSquare = faPenToSquare;
 
   constructor(private matchdayService: MatchdayService,
               private seasonsService: SeasonsService,
               private route: ActivatedRoute,
-              public authenticationService: AuthenticationService) {
+              public authenticationService: AuthenticationService,
+              private router: Router) {
   }
 
   ngOnInit(): void {
@@ -51,5 +53,12 @@ export class MatchdayDetailsComponent implements OnInit {
 
   hasMatchdayStarted(): boolean {
     return new Date(this.matchday?.startTime!!).getTime() < Date.now();
+  }
+
+  getDestinationLink(matchdayId: number, fixtureId: number) {
+    const currentUrl = this.router.url;
+    const queryParams = { returnUrl: encodeURIComponent(currentUrl) };
+    const destinationUrl = `/matchdays/${matchdayId}/fixtures/edit/${fixtureId}`;
+    return [destinationUrl, { ...queryParams }];
   }
 }

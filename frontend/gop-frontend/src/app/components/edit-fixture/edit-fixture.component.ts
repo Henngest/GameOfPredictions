@@ -14,6 +14,7 @@ export class EditFixtureComponent implements OnInit {
   fixture: Fixture | undefined;
   matchdayId: number | undefined;
   errorMsg: boolean = false;
+  returnUrl = '';
 
   editForm: FormGroup = new FormGroup({
     startTime: new FormControl('', [Validators.required]),
@@ -35,6 +36,7 @@ export class EditFixtureComponent implements OnInit {
         const matchdayId = +params.get('matchdayId')!!;
         const fixtureId = +params.get('id')!!;
         this.matchdayId = matchdayId;
+        this.returnUrl = params.has('returnUrl') ? decodeURIComponent(params.get('returnUrl')!!) : '';
 
         return this.fixtureService.getById(matchdayId, fixtureId);
       })

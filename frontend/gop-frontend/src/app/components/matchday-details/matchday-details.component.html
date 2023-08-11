@@ -15,6 +15,7 @@
       <th>1</th>
       <th>X</th>
       <th>2</th>
+      <th *ngIf="authenticationService.isUserAdmin() && !matchday.isFinished && !hasMatchdayStarted()"></th>
     </tr>
     </thead>
     <tbody>
@@ -50,6 +51,13 @@
       </td>
       <td>
         {{ fixture.awayTeamWinCoefficient | number:'1.2-2' }}
+      </td>
+      <td *ngIf="authenticationService.isUserAdmin() && !matchday.isFinished && !hasMatchdayStarted()">
+        <a
+          [routerLink]="getDestinationLink(matchday.id, fixture.id)"
+        >
+          <fa-icon [icon]="faPenToSquare"></fa-icon>
+        </a>
       </td>
     </tr>
     </tbody>
