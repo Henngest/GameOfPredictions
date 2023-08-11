@@ -61,11 +61,9 @@ export class EditFixtureComponent implements OnInit {
         this.editForm.get('homeTeamWinCoefficient')?.value,
         this.editForm.get('drawCoefficient')?.value,
         this.editForm.get('awayTeamWinCoefficient')?.value)
-        .subscribe(
-          param => {
-            this.router.navigateByUrl(`/competitions/${this.fixture?.matchday.season.competition.id}/seasons/${this.fixture?.matchday.season.id}/matchdays/${this.matchdayId}`);
-          }
-        );
+        .subscribe(param => {
+          this.router.navigateByUrl(this.returnUrl);
+        });
     } else {
       this.errorMsg = true;
     }
