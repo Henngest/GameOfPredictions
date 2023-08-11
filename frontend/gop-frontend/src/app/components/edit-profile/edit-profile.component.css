@@ -49,3 +49,8 @@ select option {
   background-color: #0056b3;
   cursor: pointer;
 }
+
+span {
+  margin-top: 5px;
+  color: #ff6b6b;
+}
