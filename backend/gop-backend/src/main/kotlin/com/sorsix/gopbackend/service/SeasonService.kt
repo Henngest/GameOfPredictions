@@ -6,5 +6,5 @@ interface SeasonService {
 
     fun getAllByCompetition(competitionId: Long): MutableList<Season>
 
-    fun getByIdAndCompetition(seasonId: Long, competitionId: Long): Season
+    fun getById(seasonId: Long): Season
 }

@@ -22,12 +22,8 @@ class SeasonServiceImpl(
         return this.seasonRepository.findAllByCompetition(competition)
     }
 
-    override fun getByIdAndCompetition(seasonId: Long, competitionId: Long): Season {
-        val competition = this.competitionRepository.findByIdOrNull(competitionId)
-            ?: throw CompetitionDoesNotExistException("Competition with id [$competitionId] does not exist.")
-
-        return this.seasonRepository.findByIdAndCompetition(seasonId, competition) ?: throw SeasonDoesNotExistException(
+    override fun getById(seasonId: Long): Season =
+        this.seasonRepository.findByIdOrNull(seasonId) ?: throw SeasonDoesNotExistException(
             "Season with id [$seasonId] does not exist."
         )
-    }
 }

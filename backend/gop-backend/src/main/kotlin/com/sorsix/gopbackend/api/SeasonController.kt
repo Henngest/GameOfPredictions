@@ -19,7 +19,7 @@ class SeasonController(
         this.seasonService.getAllByCompetition(competitionId)
 
     @GetMapping("/{id}")
-    fun getSeason(@PathVariable competitionId: Long, @PathVariable id: Long): ResponseEntity<*> =
-        this.seasonService.getByIdAndCompetition(id, competitionId)
+    fun getSeason(@PathVariable competitionId: Long, @PathVariable id: Long): ResponseEntity<Season> =
+        this.seasonService.getById(id)
             .let { ResponseEntity.ok(it) }
 }
