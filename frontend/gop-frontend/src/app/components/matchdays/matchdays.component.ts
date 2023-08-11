@@ -34,4 +34,8 @@ export class MatchdaysComponent implements OnChanges {
     }
   }
 
+  hasMatchdayStarted(matchday: Matchday): boolean {
+    return new Date(matchday.startTime).getTime() < Date.now();
+  }
+
 }

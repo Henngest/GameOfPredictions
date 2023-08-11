@@ -15,8 +15,8 @@ class MatchdayController(val matchdayService: MatchdayService) {
         matchdayService.getAllBySeason(seasonId)
 
     @GetMapping("/{id}")
-    fun getMatchdayById(@PathVariable seasonId: Long, @PathVariable id: Long): ResponseEntity<*> =
-        matchdayService.getByIdAndSeason(id, seasonId)
+    fun getMatchdayById(@PathVariable seasonId: Long, @PathVariable id: Long): ResponseEntity<Matchday> =
+        matchdayService.getById(id)
             .let { ResponseEntity.ok(it) }
 
     @PostMapping("/import")

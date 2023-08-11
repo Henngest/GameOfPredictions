@@ -8,7 +8,7 @@ interface MatchdayService {
 
     fun getAllBySeason(seasonId: Long): MutableList<Matchday>
 
-    fun getByIdAndSeason(matchdayId: Long, seasonId: Long): Matchday
+    fun getById(matchdayId: Long): Matchday
 
     fun importMatchdaysFromFile(seasonId: Long, file: InputStream)
 

@@ -61,7 +61,7 @@
     {{ hasMatchdayStarted() || matchday.isFinished ? 'See your predictions' : 'Make predictions' }}
   </a>
   <a
-    *ngIf="authenticationService.isUserAdmin() && !matchday.isFinished"
+    *ngIf="authenticationService.isUserAdmin() && !matchday.isFinished && hasMatchdayStarted()"
     class="import-button"
     routerLink="/competitions/{{competition?.id}}/seasons/{{season?.id}}/matchdays/{{matchday.id}}/importResults"
   >Import results</a>

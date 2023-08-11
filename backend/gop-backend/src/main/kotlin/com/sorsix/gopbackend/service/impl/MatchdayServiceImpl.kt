@@ -34,11 +34,8 @@ class MatchdayServiceImpl(
         return matchdayRepository.findAllBySeasonOrderByMatchdayNumber(season)
     }
 
-    override fun getByIdAndSeason(matchdayId: Long, seasonId: Long): Matchday {
-        val season = seasonRepository.findByIdOrNull(seasonId)
-            ?: throw SeasonDoesNotExistException("Season with id [$seasonId] does not exist.")
-
-        return matchdayRepository.findByIdAndSeason(matchdayId, season)
+    override fun getById(matchdayId: Long): Matchday {
+        return matchdayRepository.findByIdOrNull(matchdayId)
             ?: throw MatchdayDoesNotExistException("Matchday with id [$matchdayId] does not exist.")
     }
 
@@ -99,21 +96,29 @@ class MatchdayServiceImpl(
         val fixtures = this.fileParserUtil.parseFixtureResultsFromFile(file)
 
         fixtures.forEach {
-            val fixture = this.fixtureRepository.findByMatchdayIdAndHomeTeamAndAwayTeam(matchdayId, it.homeTeam, it.awayTeam)
-                ?: throw FixtureDoesNotExistException("Fixture with home team [${it.homeTeam}] and away team [${it.awayTeam} for matchday [${matchdayId}] does not exist")
+            val fixture =
+                this.fixtureRepository.findByMatchdayIdAndHomeTeamAndAwayTeam(matchdayId, it.homeTeam, it.awayTeam)
+                    ?: throw FixtureDoesNotExistException("Fixture with home team [${it.homeTeam}] and away team [${it.awayTeam} for matchday [${matchdayId}] does not exist")
 
-            this.fixtureRepository.save(fixture.copy(
-                homeTeamGoals = it.homeTeamGoals,
-                awayTeamGoals = it.awayTeamGoals,
-                outcome = it.outcome
-            ))
-            this.predictionRepository.findAllByFixture(fixture).forEach{ it2 ->
+            this.fixtureRepository.save(
+                fixture.copy(
+                    homeTeamGoals = it.homeTeamGoals,
+                    awayTeamGoals = it.awayTeamGoals,
+                    outcome = it.outcome
+                )
+            )
+            this.predictionRepository.findAllByFixture(fixture).forEach { it2 ->
                 val coefficient = when (it2.predictedOutcome) {
                     Outcome.HOME_TEAM_WIN -> fixture.homeTeamWinCoefficient
                     Outcome.AWAY_TEAM_WIN -> fixture.awayTeamWinCoefficient
                     else -> fixture.drawCoefficient
                 }
-                this.predictionService.checkPredictionAndUpdateRating(it2.predictedOutcome, fixture.outcome!!, it2.user, coefficient)
+                this.predictionService.checkPredictionAndUpdateRating(
+                    it2.predictedOutcome,
+                    fixture.outcome!!,
+                    it2.user,
+                    coefficient
+                )
             }
         }
 
@@ -122,10 +127,12 @@ class MatchdayServiceImpl(
 
     private fun closeMatchdayForPredictions(matchdayId: Long) {
         val matchday = this.matchdayRepository.findByIdOrNull(matchdayId)
-           ?: throw MatchdayDoesNotExistException("Matchday with id [$matchdayId] does not exist.")
+            ?: throw MatchdayDoesNotExistException("Matchday with id [$matchdayId] does not exist.")
 
-        this.matchdayRepository.save(matchday.copy(
-            isFinished = true
-        ))
+        this.matchdayRepository.save(
+            matchday.copy(
+                isFinished = true
+            )
+        )
     }
 }
