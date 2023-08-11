@@ -3,7 +3,6 @@ import {RouterModule, Routes} from '@angular/router';
 import {CompetitionsComponent} from "./components/competitions/competitions.component";
 import {CompetitionDetailsComponent} from "./components/competition-details/competition-details.component";
 import {SeasonDetailsComponent} from "./components/season-details/season-details.component";
-import {MatchdaysComponent} from "./components/matchdays/matchdays.component";
 import {MatchdayDetailsComponent} from "./components/matchday-details/matchday-details.component";
 import {LoginComponent} from "./components/login/login.component";
 import {RegisterComponent} from "./components/register/register.component";
@@ -16,13 +15,13 @@ import {LeaderboardComponent} from "./components/leaderboard/leaderboard.compone
 import {IsAdminGuard} from "./guards/is-admin.guard";
 import {IsAuthenticatedGuard} from "./guards/is-authenticated.guard";
 import {ErrorComponent} from "./components/error/error.component";
+import {EditFixtureComponent} from "./components/edit-fixture/edit-fixture.component";
 
 const routes: Routes = [
   {path: 'competitions', component: CompetitionsComponent},
   {path: '', redirectTo: '/competitions', pathMatch: 'full'},
   {path: 'competitions/:id', component: CompetitionDetailsComponent},
   {path: 'competitions/:competitionId/seasons/:id', component: SeasonDetailsComponent},
-  // {path: 'competitions/:competitionId/seasons/:seasonId/matchdays', component: MatchdaysComponent},
   {path: 'competitions/:competitionId/seasons/:seasonId/matchdays/import', component: ImportMatchdaysComponent, canActivate: [IsAdminGuard], data: { requiredRoles: ['ROLE_ADMIN'] }},
   {path: 'competitions/:competitionId/seasons/:seasonId/matchdays/:id', component: MatchdayDetailsComponent},
   {path: 'competitions/:competitionId/seasons/:seasonId/matchdays/:id/predict', component: MakePredictionsComponent},
@@ -33,6 +32,7 @@ const routes: Routes = [
   {path: 'profile/edit', component: EditProfileComponent, canActivate: [IsAuthenticatedGuard]},
   {path: 'leaderboard', component: LeaderboardComponent},
   {path: 'error', component: ErrorComponent},
+  {path: 'matchdays/:matchdayId/fixtures/edit/:id', component: EditFixtureComponent}
 ];
 
 @NgModule({

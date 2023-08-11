@@ -1,5 +1,6 @@
 import {Team} from "./team";
 import {Outcome} from "../enums/outcome";
+import {Matchday} from "./matchday";
 
 export interface Fixture {
   id: number;
@@ -12,4 +13,5 @@ export interface Fixture {
   awayTeamGoals?: number;
   homeTeam: Team;
   awayTeam: Team;
+  matchday: Matchday;
 }
