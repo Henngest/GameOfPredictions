@@ -1,17 +1,15 @@
-<div>
-  <h1>Edit fixture</h1>
-  <form [formGroup]="editForm" (ngSubmit)="submit()">
-    <div>
-      <label for="startTime">Start time:</label>
-      <input type="datetime-local" id="startTime" formControlName="startTime">
-      <label for="homeTeamCoef">{{ fixture?.homeTeam?.name}} Win Coefficient</label>
-      <input type="number" id="homeTeamCoef" formControlName="homeTeamWinCoefficient" step="0.05" min="1.00">
-      <label for="drawCoef">Draw Coefficient</label>
-      <input type="number" id="drawCoef" formControlName="drawCoefficient" step="0.05" min="1.00">
-      <label for="awayTeamCoef">{{ fixture?.awayTeam?.name}} Win Coefficient</label>
-      <input type="number" id="awayTeamCoef" formControlName="awayTeamWinCoefficient" step="0.05" min="1.00">
-    </div>
+<h1>Edit fixture</h1>
+<form [formGroup]="editForm" (ngSubmit)="submit()">
+  <div>
+    <label for="startTime">Start time:</label>
+    <input type="datetime-local" id="startTime" formControlName="startTime">
+    <label for="homeTeamCoef">{{ fixture?.homeTeam?.name}} Win Coefficient</label>
+    <input type="number" id="homeTeamCoef" formControlName="homeTeamWinCoefficient" step="0.05" min="1.00">
+    <label for="drawCoef">Draw Coefficient</label>
+    <input type="number" id="drawCoef" formControlName="drawCoefficient" step="0.05" min="1.00">
+    <label for="awayTeamCoef">{{ fixture?.awayTeam?.name}} Win Coefficient</label>
+    <input type="number" id="awayTeamCoef" formControlName="awayTeamWinCoefficient" step="0.05" min="1.00">
     <button class="submit-button" type="submit">Update</button>
     <span *ngIf="errorMsg">All coefficients must be greater than 1</span>
-  </form>
-</div>
+  </div>
+</form>

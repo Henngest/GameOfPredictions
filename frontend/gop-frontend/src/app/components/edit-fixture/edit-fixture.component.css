@@ -1,0 +1,51 @@
+div {
+  width: 350px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #eeeeee;
+}
+
+h1 {
+  font-size: 24px;
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+input[type="datetime-local"],
+input[type="number"] {
+  width: 95%;
+  padding: 8px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  background-color: #fff;
+}
+
+.submit-button {
+  background-color: var(--light-blue);
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 3px;
+  margin: 5px;
+  width: 95%;
+}
+
+.submit-button:hover {
+  cursor: pointer;
+  background-color: #0056b3;
+}
+
+span {
+  display: block;
+  margin-top: 10px;
+  color: #ff6b6b;
+}

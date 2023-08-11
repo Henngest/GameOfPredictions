@@ -14,6 +14,7 @@ import {Router} from "@angular/router";
 export class EditProfileComponent implements OnInit {
   countryList = countryList;
   editForm: FormGroup = new FormGroup({});
+  errorMsg: boolean = false;
 
   constructor(private formBuilder: FormBuilder,
               private authService: AuthenticationService,
@@ -31,9 +32,11 @@ export class EditProfileComponent implements OnInit {
 
   submit() {
     const currentUser = this.authService.getUsername();
-    if (currentUser) {
+    if (currentUser && this.editForm.get('country')?.value != "") {
       this.userProfileService.editUserProfile(currentUser, this.editForm.get('country')?.value)
         .subscribe(_ => this.router.navigateByUrl("/profile"));
+    } else {
+      this.errorMsg = true;
     }
   }
 }
