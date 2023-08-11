@@ -25,6 +25,7 @@ import { EditProfileComponent } from './components/edit-profile/edit-profile.com
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import {ResponseErrorInterceptor} from "./interceptors/response-error-interceptor";
 import { ErrorComponent } from './components/error/error.component';
+import { EditFixtureComponent } from './components/edit-fixture/edit-fixture.component';
 
 
 export function jwtOptionsFactory() {
@@ -57,6 +58,7 @@ export function jwtOptionsFactory() {
     EditProfileComponent,
     SidebarComponent,
     ErrorComponent,
+    EditFixtureComponent,
   ],
   imports: [
     BrowserModule,
