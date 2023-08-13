@@ -19,7 +19,7 @@ class ErrorHandler : ResponseEntityExceptionHandler() {
 
     @ExceptionHandler(DoesNotExistException::class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    fun onCompetitionOrSeasonInvalidId(exception: RuntimeException): Map<String, String> =
+    fun onDoesNotExist(exception: RuntimeException): Map<String, String> =
             mapOf("error" to (exception.message ?: ""))
 
     override fun handleMethodArgumentNotValid(

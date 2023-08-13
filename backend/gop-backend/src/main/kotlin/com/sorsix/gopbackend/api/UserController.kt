@@ -36,13 +36,9 @@ class UserController(
     fun getAllUsersSortedByRating(
         @RequestParam page: Int,
         @RequestParam size: Int,
-        @RequestParam(required = false) sortDirection: String?
-    ): ResponseEntity<Page<User>> =
-        if (sortDirection != null) {
+        @RequestParam(defaultValue = "DESC") sortDirection: String
+    ): ResponseEntity<Page<User>> {
             val sortingCriteria = Sort.by(Sort.Direction.fromString(sortDirection), "rating")
-            ResponseEntity.ok(this.userRepository.findAll(PageRequest.of(page, size, sortingCriteria)))
-        } else {
-            val sortingCriteria = Sort.by(Sort.Direction.DESC, "rating")
-            ResponseEntity.ok(this.userRepository.findAll(PageRequest.of(page, size, sortingCriteria)))
-        }
+            return ResponseEntity.ok(this.userRepository.findAll(PageRequest.of(page, size, sortingCriteria)))
+    }
 }
