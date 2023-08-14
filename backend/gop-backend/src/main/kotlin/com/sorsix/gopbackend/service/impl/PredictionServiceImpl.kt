@@ -53,7 +53,7 @@ class PredictionServiceImpl(
         } else {
             this.userRepository.save(
                 userPredicting.copy(
-                    rating = userPredicting.rating - coefficient * (3 + 2 * abs(1 - coefficient))
+                    rating = userPredicting.rating - 0.2 * coefficient * (3 + 2 * abs(1 - coefficient))
                 )
             )
             false
