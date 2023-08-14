@@ -2,6 +2,10 @@
   width: 100%;
 }
 
+.matchday-details-container {
+  margin-bottom: 2em;
+}
+
 .d-flex {
   display: flex;
 }
@@ -11,7 +15,7 @@
 }
 
 .fixture-header {
-  width: 70%;
+  width: 90%;
 }
 
 .fixture-img {
